@@ -7,8 +7,6 @@ app.secret_key = 'This is really unique and secret'
 
 @app.route('/')
 
-
-
 def hello_person():
     return render_template('Test.html')
 
