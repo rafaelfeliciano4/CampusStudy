@@ -17,9 +17,9 @@ What We Learned?
 
 ##### Next sprint planning:
   
--ER Mapping and working DBMS instance hosted somewhere on the Cloud
+-ER Mapping and working DBMS instance hosted on pythonanywhere
 
--App (client side) mock screenshots and/or wire frames with matching requirements and task descriptions
+-Client side mock screenshots with matching requirements and task descriptions
 
 -Updated Gantt chart with percent completion for each task
 
