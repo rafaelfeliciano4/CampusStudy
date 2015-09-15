@@ -1,7 +1,7 @@
 # Campus Study
 [Campus Study](http://campusstudy.pythonanywhere.com/)
 
-##### Sprint0 Meetings Reports:
+##### Sprint 0 Meetings Reports:
 
 What Worked Well?
 
