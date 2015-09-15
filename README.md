@@ -1,6 +1,7 @@
 # Campus Study
+[Campus Study](http://campusstudy.pythonanywhere.com/)
 
-  Sprint Meetings Reports:
+##### Sprint Meetings Reports:
 
 What Worked Well?
 
@@ -14,5 +15,14 @@ What We Learned?
 
   We learned that it is good to start to work early and to always be organized, and the due dates will be met without much difficulty.
 
+##### Next sprint planning:
+  
+-ER Mapping and working DBMS instance hosted somewhere on the Cloud
 
-  [Campus Study](http://campusstudy.pythonanywhere.com/)
+-App (client side) mock screenshots and/or wire frames with matching requirements and task descriptions
+
+-Updated Gantt chart with percent completion for each task
+
+-Detailed Project Development Plan for Sprint II
+
+-Updated Master Project Development Plan
