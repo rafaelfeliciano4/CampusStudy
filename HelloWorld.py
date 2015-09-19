@@ -2,7 +2,7 @@
 from flask import Flask
 import random
 from flask import render_template
-#TESTESTESTEST
+
 app = Flask(__name__)
 app.secret_key = 'This is really unique and secret'
 
