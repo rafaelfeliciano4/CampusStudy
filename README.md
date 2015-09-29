@@ -26,3 +26,18 @@ What We Learned?
 -Detailed Project Development Plan for Sprint II
 
 -Updated Master Project Development Plan
+
+#### Sprint 1 Meetings report:
+
+What Worked Well?
+
+  Creating the different layouts for each page and linking them together.
+
+What Didn’t Worked Well?
+
+  Sometimes the items in the layouts would behave in random ways and would not update correctly, because old settings were being saved in the browser's memory.
+
+
+What We Learned?
+
+  Items in the layout will reposition themselves depending on your screen size if it is not setup correctly.
