@@ -1,6 +1,6 @@
-Campus Study Database
+#Campus Study Database
 
-Table structure for table `Attending`
+####Table structure for table `Attending`
 
 CREATE TABLE `Attending` (
   `userID` varchar(8) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE `Attending` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `Belongs`
+####Table structure for table `Belongs`
 
 CREATE TABLE `Belongs` (
   `userID` varchar(8) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `Belongs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `Category`
+####Table structure for table `Category`
 
 CREATE TABLE `Category` (
   `ID` varchar(8) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `Category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `Colleagues`
+####Table structure for table `Colleagues`
 
 CREATE TABLE `Colleagues` (
   `userID` varchar(8) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `Colleagues` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `ColleaguesPost`
+####Table structure for table `ColleaguesPost`
 
 CREATE TABLE `ColleaguesPost` (
   `postID` varchar(8) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `ColleaguesPost` (
 
 
 
-Table structure for table `Creates`
+####Table structure for table `Creates`
 
 CREATE TABLE `Creates` (
   `postID` varchar(8) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `Creates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `GroupCategory`
+####Table structure for table `GroupCategory`
 
 CREATE TABLE `GroupCategory` (
   `groupID` varchar(8) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `GroupCategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `GroupPost`
+####Table structure for table `GroupPost`
 
 CREATE TABLE `GroupPost` (
   `postID` varchar(8) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `GroupPost` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `Groups`
+####Table structure for table `Groups`
 
 CREATE TABLE `Groups` (
   `ID` varchar(8) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `Groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `HasNotification`
+####Table structure for table `HasNotification`
 
 CREATE TABLE `HasNotification` (
   `notificationID` varchar(8) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `HasNotification` (
 
 
 
-Table structure for table `Meeting`
+####Table structure for table `Meeting`
 
 CREATE TABLE `Meeting` (
   `ID` varchar(8) NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE `Meeting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `MeetingCategory`
+####Table structure for table `MeetingCategory`
 
 CREATE TABLE `MeetingCategory` (
   `meetingID` varchar(8) NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE `MeetingCategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `MeetingPost`
+####Table structure for table `MeetingPost`
 
 CREATE TABLE `MeetingPost` (
   `postID` varchar(8) NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE `MeetingPost` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `Notifications`
+####Table structure for table `Notifications`
 
 CREATE TABLE `Notifications` (
   `ID` varchar(8) NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE `Notifications` (
 
 
 
-Table structure for table `Post`
+####Table structure for table `Post`
 
 CREATE TABLE `Post` (
   `ID` varchar(8) NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE `Post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `User`
+####Table structure for table `User`
 
 CREATE TABLE `User` (
   `ID` varchar(8) NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-Table structure for table `UserFaculty`
+####Table structure for table `UserFaculty`
 
 CREATE TABLE `UserFaculty` (
   `userID` varchar(8) NOT NULL,
