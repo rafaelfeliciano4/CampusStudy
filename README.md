@@ -28,7 +28,7 @@ What We Learned?
 -Updated Master Project Development Plan
 
 #### Sprint 1 Meetings report:
-
+-----------------------------------------------------------------------------------------------------------------------------
 What Worked Well?
 
   Creating the different layouts for each page and linking them together.
@@ -45,11 +45,13 @@ What We Learned?
 
 ##### Next sprint planning:
 
--Updated Gantt chart with percent completion for each task
+* Update views/layouts
 
--Detailed Project Development Plan for Sprint III
+* Store data from dummy layouts in JSON
 
--Updated Master Project Development Plan
+* Updated Gantt chart with percent completion for each task
 
--Store data from dummy layouts in JSON
+* Detailed Project Development Plan for Sprint III
 
+* Updated Master Project Development Plan
+ 
