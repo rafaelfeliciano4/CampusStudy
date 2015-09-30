@@ -1,16 +1,11 @@
 
-from flask import Flask
-import random
-from flask import render_template
+from flask import Flask, request, render_template
 
-app = Flask(__name__)
-app.secret_key = 'This is really unique and secret'
+app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 
 def hello_person():
-    return render_template('Test.html')
+    return app.send_static_file('FrontPage.html')
 
 
-if __name__ == '__main__':
-    app.run()
