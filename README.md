@@ -71,6 +71,11 @@ What We Learned?
 
 ##### Next sprint planning:
 
+* Begin DB integration using Flask 
+
+* Start to integrate front-end with back-end of our app
+ 
+
 
 
 
