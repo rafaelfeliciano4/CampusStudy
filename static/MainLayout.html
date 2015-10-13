@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-ng-app="App">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,8 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="assets/js/app.js"></script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -43,35 +45,39 @@
                 <div class="row">
                     <h2>Goku Fulano</h2>
                     <div class="row">
-                        <img src="http://fanaticsgaming.com/assets/img/profile/no-profile.png" width="200" class="pull-left" />
+                        <img src="http://static.comicvine.com/uploads/original/11123/111235708/4697388-6975553699-Gokun.png" width="200" class="pull-left" />
                     </div>
-                    <div class="row">
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <div class="row" data-ng-controller="BioCtrl">
+                        <p data-ng-repeat="bio in bios">{{bio.bio}}</p>
                     </div>
                 </div>
-                <h2>Colleagues</h2>
-                <div class="row">
-                    <p style="height:200px; overflow-y: scroll;">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar faucibus neque, nec rhoncus nunc ultrices sit amet. Curabitur ac sagittis neque, vel egestas est. Aenean elementum, erat at aliquet hendrerit, elit nisl posuere tortor, id suscipit diam dui sed nisi. Morbi sollicitudin massa vel tortor consequat, eget semper nisl fringilla. Maecenas at hendrerit odio. Sed in mi eu quam suscipit bibendum quis at orci. Pellentesque fermentum nisl purus, et iaculis lectus pharetra sit amet.</p>
+                <h2 align="left">Colleagues</h2>
+                <div class="row" data-ng-controller="ColleaguesCtrl">
+                    <p data-ng-repeat="colleague in colleagues"><a href="#" onclick="location.href='UserProfile.html'">{{colleague.firstName}} {{colleague.lastName}}</a></p>
                 </div>                 
             </div>
             <div class="col-md-6">
                 <h2><a class="btn-success btn pull-right" href="#" onclick="location.href='Post.html'" role="button">Post</a>Feed</h2>
-                <div class="row">
-                    <p style="width: relative; height:700px; overflow-y: scroll;" class="text-justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar faucibus neque, nec rhoncus nunc ultrices sit amet. Curabitur ac sagittis neque, vel egestas est. Aenean elementum, erat at aliquet hendrerit, elit nisl posuere tortor, id suscipit diam dui sed nisi. Morbi sollicitudin massa vel tortor consequat, eget semper nisl fringilla. Maecenas at hendrerit odio. Sed in mi eu quam suscipit bibendum quis at orci. Pellentesque fermentum nisl purus, et iaculis lectus pharetra sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar faucibus neque, nec rhoncus nunc ultrices sit amet. Curabitur ac sagittis neque, vel egestas est. Aenean elementum, erat at aliquet hendrerit, elit nisl posuere tortor, id suscipit diam dui sed nisi. Morbi sollicitudin massa vel tortor consequat, eget semper nisl fringilla. Maecenas at hendrerit odio. Sed in mi eu quam suscipit bibendum quis at orci. Pellentesque fermentum nisl purus, et iaculis lectus pharetra sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar faucibus neque, nec rhoncus nunc ultrices sit amet. Curabitur ac sagittis neque, vel egestas est. Aenean elementum, erat at aliquet hendrerit, elit nisl posuere tortor, id suscipit diam dui sed nisi. Morbi sollicitudin massa vel tortor consequat, eget semper nisl fringilla. Maecenas at hendrerit odio. Sed in mi eu quam suscipit bibendum quis at orci. Pellentesque fermentum nisl purus, et iaculis lectus pharetra sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar faucibus neque, nec rhoncus nunc ultrices sit amet. Curabitur ac sagittis neque, vel egestas est. Aenean elementum, erat at aliquet hendrerit, elit nisl posuere tortor, id suscipit diam dui sed nisi. Morbi sollicitudin massa vel tortor consequat, eget semper nisl fringilla. Maecenas at hendrerit odio. Sed in mi eu quam suscipit bibendum quis at orci. Pellentesque fermentum nisl purus, et iaculis lectus pharetra sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar faucibus neque, nec rhoncus nunc ultrices sit amet. Curabitur ac sagittis neque, vel egestas est. Aenean elementum, erat at aliquet hendrerit, elit nisl posuere tortor, id suscipit diam dui sed nisi. Morbi sollicitudin massa vel tortor consequat, eget semper nisl fringilla. Maecenas at hendrerit odio. Sed in mi eu quam suscipit bibendum quis at orci. Pellentesque fermentum nisl purus, et iaculis lectus pharetra sit amet.</p>
+                <div class="row" data-ng-controller="FeedsCtrl">
+                    <p data-ng-repeat="feed in feeds"><a href="#">{{feed.body}}</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">{{feed.firstName}} {{feed.lastName}}</a> <b>Faculty:</b> {{feed.faculty}}</p>
                 </div>                 
             </div>
             <div class="col-md-3 pull-right">
-                <h2>Events</h2>
-                <div class="row" style="height:175px; overflow-y: scroll;">
-                    <h3 class="text-center">Event Name</h3>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='EventLayout.html'" role="button">View details »</a></p>
+                <h2 align="center">Events</h2>
+                <div class="row" style="height:175px; overflow-y: scroll;" data-ng-controller="EventsCtrl" >
+                    <div data-ng-repeat="event in events">
+                        <h3 class="text-center">{{event.name}}</h3>
+                        <p align="center"><b>Location: </b>{{event.location}} <b>Date: </b>{{event.date}} <b>Time: </b>{{event.time}}</p>
+                        <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='EventLayout.html'" role="button">View details »</a></p>
+                    </div>
                 </div>
-                <h2>Groups</h2>
-                <div class="row" style="height:175px; overflow-y: scroll;">
-                    <h3 class="text-center">Group Name</h3>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='GroupLayout.html'" role="button">View details »</a></p>
+                <h2 align="center">Groups</h2>
+                <div class="row" style="height:175px; overflow-y: scroll;" data-ng-controller="GroupsCtrl">
+                    <div data-ng-repeat="group in groups">
+                        <h3 class="text-center">{{group.name}}</h3>
+                        <p align="center">{{group.course}}</p>
+                        <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='GroupLayout.html'" role="button">View details »</a></p>
+                    </div>
                 </div>                 
             </div>
             <!-- Example row of columns -->

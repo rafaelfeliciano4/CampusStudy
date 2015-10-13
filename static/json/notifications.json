@@ -1,0 +1,20 @@
+	[
+		{
+		"fullName":"Krillin",
+		"groupName":"Find the dragon balls!",
+		"preview":"Am I dead again?!?!",
+		"imgurl":"http://i.imgur.com/o5HS7.jpg"		
+		},
+		{
+		"fullName":"Yamcha",
+		"groupName":"World Strongest",
+		"preview":"I am the strongest!!",
+		"imgurl":"http://i.ytimg.com/vi/AYrU-CjBuwI/hqdefault.jpg"		
+		},
+		{
+		"fullName":"Goku Fulano",
+		"groupName":"Food",
+		"preview":"Im hungry",
+		"imgurl":"http://static.comicvine.com/uploads/original/11123/111235708/4697388-6975553699-Gokun.png"
+		}
+	]

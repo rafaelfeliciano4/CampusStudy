@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +19,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     </head>
-    <body>
+    <body data-ng-app="App">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -44,7 +45,7 @@
                 <h1 class="text-center">Notifications</h1>
             </div>
         </div>
-        <div class="container">
+        <div class="container" data-ng-controller="NotificationsCtrl">
             <table class="table"> 
                 <thead> 
                     <tr> 
@@ -54,58 +55,27 @@
                         <th>Preview:</th>                         
                     </tr>                     
                 </thead>
-                <tbody> 
+                <tbody data-ng-repeat="notification in notifications"> 
                     <tr> 
-                        <td>1</td>                         
+                        <td>{{$index+1}}</td>                         
                         <td>
-                            <a href="#" onclick="location.href='UserProfile.html'">Krillin</a>
+                            <a href="#" onclick="location.href='UserProfile.html'">{{notification.fullName}}</a>
                         </td>
                         <td width="250em">
                             <a href="#" onclick="location.href='GroupLayout.html'">
-                                <img src="http://i.imgur.com/o5HS7.jpg" width="50em" height="40em">                                                                                                                    Find the dragon balls!
+                                <img src="{{notification.imgurl}}" width="50em" height="40em">{{notification.groupName}}
                             </a>
                         </td>                                                  
                         <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">Am I dead again?!?!</a>
+                            <a href="#" onclick="location.href='GroupLayout.html'">{{notification.preview}}</a>
                         </td>                         
                     </tr>                     
-                    <tr> 
-                        <td>2</td>                         
-                        <td>
-                            <a href="#" onclick="location.href='UserProfile.html'">Yamcha</a>
-                        </td>                         
-                        <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">
-                                <img src="http://i.ytimg.com/vi/AYrU-CjBuwI/hqdefault.jpg" width="50em" height="40em">                                                                                                        World Strongest
-                            </a>
-                        </td>                         
-                        <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">I am the strongest!!</a>
-                            <br>
-                        </td>                         
-                    </tr>
-                    <tr> 
-                        <td>3</td>                         
-                        <td>
-                            <a href="#" onclick="location.href='UserProfile.html'">Goku Fulano</a>
-                        </td>                         
-                        <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">
-                                <img src="http://fanaticsgaming.com/assets/img/profile/no-profile.png" width="50em" height="40em">                                                                                                                                                 Food
-                            </a>
-                        </td>                         
-                        <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">Im hungry</a>
-                        </td>                         
-                    </tr>                                          
+                                                             
                 </tbody>
             </table>
             <!-- Example row of columns -->
-        </div>         
-        <!-- /container -->
-        <!-- Bootstrap core JavaScript
-    ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    </body>
+        </div>  
+    <script src="assets/js/app.js"></script>
+    </body>       
+    
 </html>

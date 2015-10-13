@@ -1,0 +1,20 @@
+[
+       {
+           "body": "La reunión de Java se canceló.",
+           "firstName": "Luis",
+           "lastName": "Rodriguez",
+           "faculty": "Engineering"
+       },
+       {
+           "body": "El exam de FILO será por la mañana.",
+           "firstName": "Pam",
+           "lastName": "Lopez",
+           "faculty": "Arts"
+       },
+       {
+           "body": "Necesito ayuda con micro!!",
+           "firstName": "Robert",
+           "lastName": "Garcia",
+           "faculty": "Biology"
+       }
+   ]
