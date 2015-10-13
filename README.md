@@ -54,4 +54,31 @@ What We Learned?
 * Detailed Project Development Plan for Sprint III
 
 * Updated Master Project Development Plan
+
+#### Sprint 2 Meetings report:
+-----------------------------------------------------------------------------------------------------------------------------
+What Worked Well?
+
+  Learning Json format and reading the files with Angular was very simple. 
+
+What Didn’t Worked Well?
+
+ Json integration with Angular was a bit tricky. Making data appear in the web page with angular requires to be very consious with each argument's scope. 
+
+What We Learned?
+
+  We should use Mozilla Firefox to browse our pages, otherwise some (if not all) the content may not show in the page.
+
+##### Next sprint planning:
+
+* Begin DB integration using Flask 
+
+* Start to integrate front-end with back-end of our app
  
+
+
+
+
+
+
+
