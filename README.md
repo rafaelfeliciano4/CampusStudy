@@ -76,6 +76,25 @@ What We Learned?
 * Start to integrate front-end with back-end of our app
  
 
+#### Sprint 3 Meetings report:
+-----------------------------------------------------------------------------------------------------------------------------
+What Worked Well?
+
+  Our practice queries worked correctly, we tested table relations with cascading actions when deleting or updating a parent entity.
+
+What Didn’t Worked Well?
+
+  Some modifications and additions had to be made to the layouts in order to get a more centralized view and better functioning to the page in general. 
+
+What We Learned?
+
+  We have to be more careful when planning on joining the functions of a webpage with its data base. 
+We should keep in mind all the functionalities that each layout is supposed to have.
+
+
+##### Next sprint planning:
+
+* For the next sprint, we will begin to integrate queries with our layouts.
 
 
 

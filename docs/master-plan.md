@@ -30,7 +30,7 @@ Update Master Project Development Plan|3 days|Fri 10/9/15|Sun 10/11/15|Rafael Fe
 Spring Review|2 days|Sun 10/11/15|Mon 10/12/15|All
 Sprint 3|9 days|Thu 10/15/15|Sun 10/25/15|
 Update Gantt Chart|1 day|Thu 10/15/15|Thu 10/15/15|Anthony Slaughter
-App Development|7 days|Thu 10/15/15|Fri 10/23/15|All
+Update Layout and table relations|7 days|Thu 10/15/15|Fri 10/23/15|All
 Testing|7 days|Fri 10/16/15|Sat 10/24/15|Anthony Slaughter
 Project Development Plan for Spring 4|5 days|Mon 10/19/15|Fri 10/23/15|Carlos Rosario
 Update Master Project Development Plan|4 days|Thu 10/22/15|Sun 10/25/15|Rafael Feliciano
@@ -47,4 +47,5 @@ App Development|8 days|Thu 11/12/15|Sat 11/21/15|All
 Testing|9 days|Thu 11/12/15|Sun 11/22/15|All
 Minor bug fixes and improvements|3 days|Fri 11/20/15|Sun 11/22/15|All
 Fully working project|3 days|Sun 11/22/15|Tue 11/24/15|All
+
 
