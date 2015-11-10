@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<html data-ng-app="App">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Jumbotron Template for Bootstrap</title>
+        <title>Campus Study</title>
+        <link rel="icon" href="favicon.ico" type="icon">
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <!-- Custom styles for this template -->
@@ -17,23 +17,34 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="assets/js/app.js"></script>
     </head>
     <body data-ng-app="App">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'"> 
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
@@ -43,7 +54,7 @@
             <div class="container" data-ng-repeat="person in persons">
                 <div class="col-md-8" style="background-color: white">
                     <h3><b>{{person.fullName}}'s Post: </b></h3> 
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas 				eget quam. Donec id 						elit non 				mi porta gravida at eget metus. Nullam id dolor id 					nibh ultricies vehicula ut id elit.<img src="https://media.giphy.com/media/dUyHxzWUJX8Ri/giphy.gif" width="100%"></p> 
+                    <p>Adjunto fotos de como la pasé ayer en 100 a 1.</p> 
                 </div>
                 <div class="col-md-4 text-center"> 
                     <div class="container pull-right" onclick="location.href='UserProfile.html'">
@@ -54,19 +65,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="container" style="background-color:lightgreen">
-                    <small>Attached <a href="google.com">Files</a> </small> 
-                    <img height='15np' src='http://4.bp.blogspot.com/-_da_Zmey3Bw/UAKIinLXbZI/AAAAAAAAAxg/-dTxgC50nyE/s1600/zip-box-example.png'>
+                <div class="container" style="background-color:lightgreen;">
+                    <h4>Attached Files </h4> 
+                    <h5>Right Click -> Save As... to download</h5>
+                    <div class="col-md-offset-1">
+                        <div class="row" data-ng-controller="FilesCtrl">
+                            <p data-ng-repeat="f in files"><a href="{{f.link}}" download>{{f.link}}</p>
+                        </div>                                                  
+                    </div>
                 </div>
             </div>
-        </div>         
-        <!-- /container -->
-        <!-- Bootstrap core JavaScript
+        </div>
+    </div>     
+    <!-- /container -->
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="assets/js/app.js"></script>
-    </body>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>

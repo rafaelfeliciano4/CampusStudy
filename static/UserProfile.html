@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,7 @@
         <title>Campus Study</title>
         <link rel="icon" href="favicon.ico" type="icon">
         <!-- Bootstrap core CSS -->
-        <link href="bootstrap/css/LayoutBeta.css" rel="stylesheet">         
+        <link href="bootstrap/css/LayoutBeta.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -18,35 +17,46 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
         <link href="jumbotron.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
     </head>
     <body data-ng-app="App">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
-        <div class="jumbotron" data-ng-controller="PersonsCtrl">
+        <div class="jumbotron" data-ng-controller="ProfileUserCtrl">
             <div class="container">
-                <div class="row" style="height:100%; background-color:" data-ng-repeat="person in persons">
+                <div class="row" style="height:100%; background-color:" data-ng-repeat="profile in profiles">
                     <div class="pull-left text-left col-md-offset-0 col-md-push-0 col-md-pull-0 col-md-4">
                         <div class="container">
-                            <h2 style="display: block;">{{person.fullName}}</h2>
+                            <h2 style="display: block;">{{profile.name}}</h2>
                             <img src="https://upload.wikimedia.org/wikipedia/en/3/3f/Majin-Boo.jpg" style="display: block; width: 100%;" class="pull-left" width="350">
-                            <small class="text-left" style="word-wrap: break-word">{{person.email}}</small>
+                            <small class="text-left" style="word-wrap: break-word">{{profile.email}}</small>
                         </div>
                         <br>
                     </div>
@@ -54,41 +64,41 @@
                         <dl style="display: block;">
                             <div class="form-group">
                                 <b>Major:</b>
-                                <p class="form-control-static">{{person.major}}</p>
+                                <p class="form-control-static">{{profile.major}}</p>
                             </div>
-                            <div class="form-group"> 
+                            <div class="form-group">
                                 <label class="control-label">Year:</label>
-                                <p class="form-control-static">{{person.year}}</p> 
+                                <p class="form-control-static">7</p>
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label">Faculty:</label>                                 
-                                <p class="form-control-static">{{person.faculty}}</p> 
-                            </div>                             
+                            <div class="form-group">
+                                <label class="control-label">Faculty:</label>
+                                <p class="form-control-static">{{profile.faculty}}</p>
+                            </div>
                         </dl>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group"> 
+                        <div class="form-group">
                             <label class="control-label" for="formInput82" style="width:100%">Bio:</label>
-                            <p4>{{person.bio}}
-</p4>                             
+                            <p4>{{profile.bio}}
+</p4>
                         </div>
                     </div>
-                </div>                 
-                <a class="btn-success btn pull-left" style="display: " ref="#" onclick="#" role="button">Follow Colleague</a>
-                <a class="btn btn-lg btn-danger" style="display: none" href="#" onclick="#" role="button">Unfollow Colleague</a>
-            </div>             
+                </div>
+                <a class="btn-success btn pull-left" style="display: " href="/Follow" role="button">Follow Colleague</a>
+                <a class="btn btn-lg btn-danger" style="display: " href="/unFollow" role="button">Unfollow Colleague</a>
+            </div>
             <br>
         </div>
         <div class="container" style="background-color:lightgreen">
             <div class="row">
-                <div class="col-md-4 pull-left" style="width:50%; height:95%; " data-ng-controller="ColleaguesCtrl">
+                <div class="col-md-4 pull-left" style="width:50%; height:95%; " data-ng-controller="cColleaguesCtrl">
                     <h2 style="display: block;">Colleagues</h2>
                     <div style="overflow-y: scroll">
                         <table border="1" style="width:100%; background-color:white;">
-                            <tr data-ng-repeat="colleague in colleagues">
+                            <tr data-ng-repeat="col in cColleagues">
                                 <td>
-                                    <a href="#" onclick="location.href='UserProfile.html'">{{colleague.firstName}} {{colleague.lastName}}</a>
-                                </td>                                 
+                                    <a href="/User/{{col.ID}}">{{col.name}}</a>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -97,18 +107,18 @@
                     <h2>Groups</h2>
                     <div style="overflow-y: scroll">
                         <table border="1" style="width:100%; background-color:white;">
-                            <tr data-ng-repeat="group in groups"> 
+                            <tr data-ng-repeat="group in groups">
                                 <td>
                                     <a href="#" onclick="location.href='GroupLayout.html'">{{group.name}}</a>
-                                </td>                                 
-                            </tr>                             
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
             <!-- Example row of columns -->
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -22,18 +22,27 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
+                        <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
@@ -48,27 +57,33 @@
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     <h2 class="">Carlos E Rosario</h2>
                     <img src="http://i.imgur.com/u93W7Yv.png" width="200" class="text-center" />
-                    <p class=""><a class="btn btn-default" href="#" role="button">Email at: carlos.rosario10@upr.edu »</a></p>
+                    <p class=""><a class="btn btn-default" href="mailto:carlos.rosario10@upr.edu?Subject=Campus%20Study&Body=Hello,%20I%20have%20a%20question%20about%20your%20web%20page%20Campus%20Study:" role="button">Email at: carlos.rosario10@upr.edu »</a></p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     <h2>Anthony S Slaughter</h2>
                     <img src="http://www.galleriesss.com/wp-content/uploads/2015/05/facebook-no-profile-picture-batmanpix-for-facebook-default-profile-picture-batman-iqblue8y.jpg" width="200" />
-                    <p><a class="btn btn-default" href="#" role="button">Email at: anthony.slaughter@upr.edu »</a></p>
+                    <p><a class="btn btn-default" href="mailto:anthony.slaughter@upr.edu?Subject=Campus%20Study&Body=Hello,%20I%20have%20a%20question%20about%20your%20web%20page%20Campus%20Study:" role="button">Email at: anthony.slaughter@upr.edu »</a></p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     <h2>Rafael Feliciano</h2>
                     <img src="https://s-media-cache-ak0.pinimg.com/736x/60/87/ed/6087ed0551ade6a795b06580293c99eb.jpg" width="200" />
-                    <p><a class="btn btn-default" href="#" role="button">Email at: rafael.feliciano4@upr.edu »</a></p>
+                    <p><a class="btn btn-default" href="mailto:rafael.feliciano4@upr.edu?Subject=Campus%20Study&Body=Hello,%20I%20have%20a%20question%20about%20your%20web%20page%20Campus%20Study:" role="button">Email at: rafael.feliciano4@upr.edu »</a></p>
                 </div>
             </div>
-            <hr>
+            <div class="row text-center">
+                <div class="text-center">
+                    <h2>Campus Study Team</h2>
+                    <img src="http://i.imgur.com/vldH2Bz.png" width="200" />
+                    <p><a class="btn btn-default" href="mailto:anthony.slaughter@upr.edu,carlos.rosario10@upr.edu,rafael.feliciano4@upr.edu?Subject=Campus%20Study&Body=Hello,%20I%20have%20a%20question%20about%20your%20web%20page%20Campus%20Study:" role="button">Email all of the membes of Campus Study»</a></p>
+                </div>
+            </div>
             <footer>
                 <p>&copy; Campus Study 2015</p>
             </footer>
-        </div>         
+        </div>
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

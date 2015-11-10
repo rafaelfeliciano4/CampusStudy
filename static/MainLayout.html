@@ -20,54 +20,63 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <script src="assets/js/app.js"></script>
     </head>
-    <body>
+    <body class="bg-info">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="http://i.imgur.com/b1ftZ9k.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
         <div class="container">
-            <div class="pull-left col-md-3">
-                <div class="row">
-                    <h2>Goku Fulano</h2>
+            <div class="pull-left col-md-3" data-ng-controller="ProfileCtrl">
+                <div class="row" data-ng-repeat="profile in profiles">
+                    <h2>{{profile.name}}</h2>
                     <div class="row">
                         <img src="http://static.comicvine.com/uploads/original/11123/111235708/4697388-6975553699-Gokun.png" width="200" class="pull-left" />
                     </div>
-                    <div class="row" data-ng-controller="BioCtrl">
-                        <p data-ng-repeat="bio in bios">{{bio.bio}}</p>
+                    <div class="row" >
+                        <p>{{profile.bio}}</p>
                     </div>
                 </div>
                 <h2 align="left">Colleagues</h2>
                 <div class="row" data-ng-controller="ColleaguesCtrl">
-                    <p data-ng-repeat="colleague in colleagues"><a href="#" onclick="location.href='UserProfile.html'">{{colleague.firstName}} {{colleague.lastName}}</a></p>
-                </div>                 
+                <p data-ng-repeat="colleague in colleagues"><a  href="/User/{{colleague.ID}}">{{colleague.name}}</a></p>
+                </div>
             </div>
             <div class="col-md-6">
                 <h2><a class="btn-success btn pull-right" href="#" onclick="location.href='Post.html'" role="button">Post</a>Feed</h2>
-                <div class="row" data-ng-controller="FeedsCtrl">
-                    <p data-ng-repeat="feed in feeds"><a href="#" onclick="location.href='PostView.html'">{{feed.body}}</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">{{feed.firstName}} {{feed.lastName}}</a> <b>Faculty:</b> {{feed.faculty}}</p>
-                </div>                 
+                <div class="row" >
+                    <p ><a href="#" onclick="location.href='PostView.html'">algo</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">Moncho Artuaga</a> <b>Faculty:</b> Biblio</p>
+                </div>
             </div>
-            <div class="col-md-3 pull-right">
+            <div class="col-md-3 pull-right" data-ng-controller="EventsCtrl">
                 <h2 align="center">Events</h2>
-                <div class="row" style="height:175px; overflow-y: scroll;" data-ng-controller="EventsCtrl">
-                    <div data-ng-repeat="event in events">
-                        <h3 class="text-center">{{event.name}}</h3>
-                        <p align="center"><b>Location: </b>{{event.location}} <b>Date: </b>{{event.date}} <b>Time: </b>{{event.time}}</p>
+                <div class="row"  style="height:175px; overflow-y: scroll;">
+                    <div data-ng-repeat="e in events">
+                        <h3 class="text-center">{{e.name}}</h3>
+                        <p align="center"><b>Location:{{e.location}} </b> <b>Date:3/18/1992 </b><b>Time: 9:00PM </b></p>
                         <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='EventLayout.html'" role="button">View details »</a></p>
                     </div>
                 </div>
@@ -75,14 +84,14 @@
                 <div class="row" style="height:175px; overflow-y: scroll;" data-ng-controller="GroupsCtrl">
                     <div data-ng-repeat="group in groups">
                         <h3 class="text-center">{{group.name}}</h3>
-                        <p align="center">{{group.course}}</p>
+                        <p align="center">{{group.faculty}}</p>
                         <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='GroupLayout.html'" role="button">View details »</a></p>
                     </div>
-                </div>                 
+                </div>
             </div>
             <!-- Example row of columns -->
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

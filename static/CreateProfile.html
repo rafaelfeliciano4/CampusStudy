@@ -22,76 +22,99 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
         <div class="jumbotron">
+            <form action="/SignUp" method="POST">
             <div class="container">
                 <div class="row" style="height:100%; background-color:">
                     <div class="pull-left text-left col-md-offset-0 col-md-push-0 col-md-pull-0 col-md-4">
                         <div class="container">
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput100">Profile Name:</label>
-                                <input type="text" class="form-control" id="formInput100" placeholder="Enter Full Name">
+                            <div class="form-group">
+                                <label class="control-label" for="inputName">Profile Name:</label>
+                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Enter Full Name">
                             </div>
                             <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://fanaticsgaming.com/assets/img/profile/no-profile.png">
-                            <a class="btn btn-lg btn-success" href="#" onclick="location.href='Profile.html'" role="button">Upload profile picture</a>
+                            <label class="control-label" for="formInput112">Upload Profile Picture</label>
+
+                            <form action="profile_picture_form.asp">
+                                <input type="file" name="pic" id="pix" accept="image/*">
+                                <script>
+                                function buttonClick() {
+                                    var picName = document.getElementById("pix").value
+                                    alert(picName);
+                                }
+                                </script>
+                                <input type="submit" onclick="buttonClick()">
+                            </form>
+
                         </div>
                         <br>
                     </div>
                     <div class="col-md-4">
                         <dl style="display: block;">
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput24">Major:</label>
-                                <input type="text" class="form-control" id="formInput24" placeholder="Enter Major">
+                            <div class="form-group">
+                                <label class="control-label" for="inputMajor">Major:</label>
+                                <input type="text" class="form-control" name="inputMajor" id="inputMajor" placeholder="Enter Major">
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput56">Faculty:</label>                                 
-                                <select id="formInput56" class="form-control"> 
-                                    <option>Saiyan</option>                                     
-                                    <option>ININ</option>                                     
-                                    <option>ICOM los duros</option>                                     
+                            <div class="form-group">
+                                <label class="control-label" for="inputFaculty">Faculty:</label>
+                                <select name="inputFaculty" id="inputFaculty" class="form-control">
+                                    <option>Engineering</option>
+                                    <option>Biology</option>
+                                    <option>Arts</option>
                                 </select>
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput112">Email:</label>
-                                <input type="text" class="form-control" id="formInput112" placeholder="Enter a valid .edu email">
+                             <div class="form-group">
+                                <label class="control-label" for="inputEmail">Email:</label>
+                                <input type="text" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter a valid .edu email">
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput112">Password:</label>
-                                <input type="password" class="form-control" id="formInput112" placeholder="Enter Password">
+                            <div class="form-group">
+                                <label class="control-label" for="inputPassword">Password:</label>
+                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Enter Password">
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput112">Verify Password:</label>
-                                <input type="password" class="form-control" id="formInput112" placeholder="Enter Password Again">
-                            </div>                             
+                            <div class="form-group">
+                                <label class="control-label" for="inputVerPassword">Verify Password:</label>
+                                <input type="password" class="form-control" name="inputVerPassword" id="inputVerPassword" placeholder="Enter Password Again">
+                            </div>
                         </dl>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group"> 
-                            <label class="control-label" for="formInput82">Bio:</label>
-                            <textarea class="form-control" rows="10"></textarea>                             
+                        <div class="form-group">
+                            <label class="control-label" for="inputBio">Bio:</label>
+                            <textarea class="form-control" rows="10" name="inputBio" id="inputBio" placeholder="Enter Bio"></textarea>
                         </div>
-                        <a class="btn btn-lg btn-success" href="#" onclick="location.href='Profile.html'" role="button">Create Profile</a>
+                        <input class="btn btn-lg btn-success" type="submit" value="Create Profile" role="button">
                     </div>
                 </div>
             </div>
             <br>
+            </form>
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

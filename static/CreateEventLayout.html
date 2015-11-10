@@ -22,30 +22,40 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
         <div class="jumbotron">
+            <form action="/CreateEvent" method="POST">
             <div class="container">
                 <div class="row" style="height:100%; background-color:">
                     <div class="pull-left text-left col-md-offset-0 col-md-push-0 col-md-pull-0 col-md-4">
                         <div class="container">
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput100">Event Name:</label>
-                                <input type="text" class="form-control" id="formInput100" placeholder="Placeholder text">
+                            <div class="form-group">
+                                <label class="control-label" for="inputName">Event Name:</label>
+                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Placeholder text">
                             </div>
                             <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://img06.deviantart.net/638b/i/2005/198/6/6/dbz__homecoming_by_risachantag.jpg">
                             <a class="btn btn-lg btn-success" href="#" onclick="location.href='Profile.html'" role="button">Upload event photo</a>
@@ -54,13 +64,13 @@
                     </div>
                     <div class="col-md-4">
                         <dl style="display: block;">
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput100">Location:</label>
-                                <input type="text" class="form-control" id="formInput100" placeholder="Placeholder text">
+                            <div class="form-group">
+                                <label class="control-label" for="inputLocation">Location:</label>
+                                <input type="text" class="form-control" name="inputLocation" id="inputLocation" placeholder="Placeholder text">
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput100">Date:</label>
-                                <select>
+                            <div class="form-group">
+                                <label class="control-label" for="inputMonth">Date:</label>
+                                <select name="inputMonth" id="inputMonth" class="form-control">
                                     <option value="Jan">Jan</option>
                                     <option value="Feb">Feb</option>
                                     <option value="Mar">Mar</option>
@@ -74,7 +84,7 @@
                                     <option value="Nov">Nov</option>
                                     <option value="Dec">Dec</option>
                                 </select>
-                                <select>
+                                <select name="inputDay" id="inputDay" class="form-control">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -87,7 +97,7 @@
                                     <option value="10">10</option>
                                     <option value="11">11</option>
                                     <option value="12">12</option>
-                                    <option value="13">13</option>                                     
+                                    <option value="13">13</option>
                                     <option value="14">14</option>
                                     <option value="15">15</option>
                                     <option value="16">16</option>
@@ -107,7 +117,7 @@
                                     <option value="30">30</option>
                                     <option value="31">31</option>
                                 </select>
-                                <select>
+                                <select name="inputYear" id="inputYear" class="form-control">
                                     <option value="2015">2015</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -120,7 +130,7 @@
                                     <option value="10">10</option>
                                     <option value="11">11</option>
                                     <option value="12">12</option>
-                                    <option value="13">13</option>                                     
+                                    <option value="13">13</option>
                                     <option value="14">14</option>
                                     <option value="15">15</option>
                                     <option value="16">16</option>
@@ -141,33 +151,34 @@
                                     <option value="31">31</option>
                                 </select>
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput100">Time:</label>
-                                <input type="text" class="form-control" id="formInput100" placeholder="Placeholder text">
+                            <div class="form-group">
+                                <label class="control-label" for="inputTime">Time:</label>
+                                <input type="text" class="form-control" name="inputTime" id="inputTime" placeholder="Placeholder text">
                             </div>
-                            <div class="form-group"> 
-                                <label class="control-label" for="formInput56">Faculty:</label>                                 
-                                <select id="formInput56" class="form-control"> 
-                                    <option>Math</option>                                     
-                                    <option>ININ</option>                                     
-                                    <option>ICOM los duros</option>                                     
+                            <div class="form-group">
+                                <label class="control-label" for="inputFaculty">Faculty:</label>
+                                <select name="inputFaculty" id="inputFaculty" class="form-control">
+                                    <option>Math</option>
+                                    <option>ININ</option>
+                                    <option>ICOM</option>
                                 </select>
                             </div>
-                            <h3 style="display: block;" class="text-danger">**You will be made administrator of this event automatically.</h3> 
+                            <h3 style="display: block;" class="text-danger">**You will be made administrator of this event automatically.</h3>
                         </dl>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group"> 
-                            <label class="control-label" for="formInput82">Purpose of event:</label>
-                            <textarea class="form-control" rows="10"></textarea>                             
+                        <div class="form-group">
+                            <label class="control-label" for="inputPurpose">Purpose of event:</label>
+                            <textarea class="form-control" name="inputPurpose" id="inputPurpose" rows="10"></textarea>
                         </div>
-                        <a class="btn btn-lg btn-success" href="#" onclick="location.href='EventLayout.html'" role="button">Create Event</a>
+                        <input class="btn btn-lg btn-success" type="submit" value="Create Event" role="button">
                     </div>
                 </div>
             </div>
             <br>
+            </form>
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

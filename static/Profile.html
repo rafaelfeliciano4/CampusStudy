@@ -23,18 +23,27 @@
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
-                <div class="navbar-collapse collapse" style="height:700px;">
-                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-right" height="55" />
-                    <a href="#" onclick="location.href='Notifications.html'"> 
-                        <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="pull-right" /> 
-                    </a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        </a>
+                    </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
@@ -43,7 +52,7 @@
             <div class="container" data-ng-repeat="profile in profiles">
                 <div class="pull-left text-left col-md-offset-0 col-md-push-0 col-md-pull-0 col-md-4">
                     <div class="container">
-                        <h2 style="display: block;">{{profile.fullName}}</h2>
+                        <h2 style="display: block;">{{profile.name}}</h2>
                         <img src="http://static.comicvine.com/uploads/original/11123/111235708/4697388-6975553699-Gokun.png" style="display: block; width: 100%;" class="pull-left" width="350">
                         <small class="text-left" style="word-wrap: break-word">{{profile.email}}</small>
                     </div>
@@ -57,9 +66,9 @@
                         <b>Major:</b>
                         <p class="form-control-static">{{profile.major}}</p>
                     </div>
-                    <div class="form-group"> 
-                        <label class="control-label">Faculty:</label>                         
-                        <p class="form-control-static">{{profile.faculty}}</p> 
+                    <div class="form-group">
+                        <label class="control-label">Faculty:</label>
+                        <p class="form-control-static">{{profile.faculty}}</p>
                     </div>
                 </div>
                 <div class="row" style="height:100%; background-color:">
@@ -80,8 +89,8 @@
                         <table border="1" style="width:100%; background-color:white;">
                             <tr data-ng-repeat="colleague in colleagues">
                                 <td>
-                                    <a href="#" onclick="location.href='UserProfile.html'">{{colleague.firstName}} {{colleague.lastName}}</a>
-                                </td>                                 
+                                    <a href="/User/{{colleague.ID}}">{{colleague.name}}</a>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -90,18 +99,18 @@
                     <h2>Groups</h2>
                     <div style="overflow-y: scroll">
                         <table border="1" style="width:100%; background-color:white;">
-                            <tr data-ng-repeat="group in groups"> 
+                            <tr data-ng-repeat="group in groups">
                                 <td>
                                     <a href="#" onclick="location.href='GroupLayout.html'">{{group.name}}</a>
-                                </td>                                 
-                            </tr>                             
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
             <!-- Example row of columns -->
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->
