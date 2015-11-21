@@ -30,25 +30,19 @@
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
-                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
-                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
-                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
+
                             <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
-                        </a>
+
                     </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
         <div class="jumbotron">
-            <form action="/SignUp" method="POST">
+            <form action="/SignUp" method="POST" enctype=multipart/form-data>
             <div class="container">
                 <div class="row" style="height:100%; background-color:">
                     <div class="pull-left text-left col-md-offset-0 col-md-push-0 col-md-pull-0 col-md-4">
@@ -57,19 +51,9 @@
                                 <label class="control-label" for="inputName">Profile Name:</label>
                                 <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Enter Full Name">
                             </div>
-                            <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://fanaticsgaming.com/assets/img/profile/no-profile.png">
-                            <label class="control-label" for="formInput112">Upload Profile Picture</label>
-
-                            <form action="profile_picture_form.asp">
-                                <input type="file" name="pic" id="pix" accept="image/*">
-                                <script>
-                                function buttonClick() {
-                                    var picName = document.getElementById("pix").value
-                                    alert(picName);
-                                }
-                                </script>
-                                <input type="submit" onclick="buttonClick()">
-                            </form>
+                            <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://i.imgur.com/FzaFFbX.png">
+                            <label class="control-label" for="file">Upload Profile Picture</label>
+                            <p><input type="file" id="file"name="file"></p>
 
                         </div>
                         <br>

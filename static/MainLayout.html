@@ -20,7 +20,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <script src="assets/js/app.js"></script>
     </head>
-    <body class="bg-info">
+    <body >
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -29,19 +29,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <img src="http://i.imgur.com/b1ftZ9k.png" width="200" class="pull-left" height="55" />
+                    <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
+                        <a href="/Notification" >
                             <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
@@ -54,7 +54,7 @@
                 <div class="row" data-ng-repeat="profile in profiles">
                     <h2>{{profile.name}}</h2>
                     <div class="row">
-                        <img src="http://static.comicvine.com/uploads/original/11123/111235708/4697388-6975553699-Gokun.png" width="200" class="pull-left" />
+                        <img src="{{profile.profilePic}}" width="275" height="275" height class="pull-left" />
                     </div>
                     <div class="row" >
                         <p>{{profile.bio}}</p>
@@ -66,26 +66,59 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2><a class="btn-success btn pull-right" href="#" onclick="location.href='Post.html'" role="button">Post</a>Feed</h2>
-                <div class="row" >
-                    <p ><a href="#" onclick="location.href='PostView.html'">algo</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">Moncho Artuaga</a> <b>Faculty:</b> Biblio</p>
-                </div>
-            </div>
-            <div class="col-md-3 pull-right" data-ng-controller="EventsCtrl">
+    <h2><a class="btn-success btn pull-right" href="#" onclick="location.href='Post.html'" role="button">Post</a>Feed</h2>
+    <div>
+        <table class="table" style="height:100px; style=" verflow-y: scroll"">
+            <thead>
+                <tr>
+                    <th>Subject:</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+
+                    <th>Posted In:</th>
+                    <th>By User:</th>
+                </tr>
+            </thead>
+            <tbody data-ng-controller="HomeFeedsCtrl">
+                <tr data-ng-repeat="feed in feeds">
+                    <td width="250em">
+                        <a href="/Post/{{feed.postID}}"> {{feed.subject}} </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+
+                    <td width="250em">
+                        <a href="/{{feed.type}}/{{feed.ID}}">
+                            <img src="{{feed.picture}}" width="50em" height="40em">                                                                    {{notification.groupName}}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/User/{{feed.uID}}"> {{feed.username}} </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+            <div class="col-md-3 pull-right" data-ng-controller="UserEventsCtrl">
                 <h2 align="center">Events</h2>
                 <div class="row"  style="height:175px; overflow-y: scroll;">
                     <div data-ng-repeat="e in events">
                         <h3 class="text-center">{{e.name}}</h3>
-                        <p align="center"><b>Location:{{e.location}} </b> <b>Date:3/18/1992 </b><b>Time: 9:00PM </b></p>
-                        <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='EventLayout.html'" role="button">View details »</a></p>
+                        <p align="center"><b>Location: {{e.location}} </b> <b>Date: {{e.date}} </b><b>Time: {{e.time}} </b></p>
+                        <p class="text-center"><a class="btn btn-default" href="/Event/{{e.ID}}" role="button">View details »</a></p>
                     </div>
                 </div>
                 <h2 align="center">Groups</h2>
-                <div class="row" style="height:175px; overflow-y: scroll;" data-ng-controller="GroupsCtrl">
+                <div class="row" style="height:175px; overflow-y: scroll;" data-ng-controller="UserGroupsCtrl">
                     <div data-ng-repeat="group in groups">
                         <h3 class="text-center">{{group.name}}</h3>
                         <p align="center">{{group.faculty}}</p>
-                        <p class="text-center"><a class="btn btn-default" href="#" onclick="location.href='GroupLayout.html'" role="button">View details »</a></p>
+                        <p class="text-center"><a class="btn btn-default" href="/Group/{{group.ID}}" role="button">View details »</a></p>
                     </div>
                 </div>
             </div>

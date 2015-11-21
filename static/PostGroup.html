@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<html data-ng-app="App2">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,9 +16,12 @@
         <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
     <![endif]-->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="assets/js/app2.js"></script>
     </head>
-    <body data-ng-app="App">
+    <body data-ng-controller="TodoCtrl">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -40,7 +42,7 @@
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="/Notification" >
+                        <a href="#" onclick="location.href='Notifications.html'">
                             <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
@@ -48,32 +50,47 @@
                 <!--/.navbar-collapse -->
             </div>
         </div>
+        <form action="/GroupPost" method="POST" enctype=multipart/form-data>
+        <p style="display: block;"><br></p>
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <div class="container">
-                <h1 class="text-center">My Events</h1>
+        <div class="container" "">
+            <div class="row pull-left" style="display: block;">
+                <h2 class="pull-left">Write a comment</h2>
             </div>
         </div>
-        <div class="container" data-ng-controller="UserEventsCtrl" style="overflow-y: scroll">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th># Events:</th>
-                    </tr>
-                </thead>
-                <tbody data-ng-repeat="e in events">
-                    <tr>
-                        <td>{{$index+1}} {{e.name}} {{e.purpose}} {{e.location}}</td>
-                        <td>
-                            <a href="/Event/{{e.ID}}">
-                                <img src="{{e.picture}}" width="50em" height="40em">                                                                                                                                                                                                                                                                                                                                                                                                                                                                {{notification.groupName}}
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <a class="btn-success btn pull-left" href="/NewEvent" role="button">Create Event</a>
+        <p style="display: block;"><br></p>
+        <div class="container">
+            <div class="row">
+                <div class="form-group has-success">
+                    <label class="control-label" for="inputSubject">Subject</label>
+                    <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="Enter Subject">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group has-success text-primary">
+                    <label class="control-label" for="inputText">Comment</label>
+                    <textarea class="form-control" rows="10" id="inputText" name="inputText" placeholder="Enter Comment(s) *Optional"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label" for="file">Select all files to attach to the post</label>
+                    <p><input type="file" id="file"name="file"></p>
+                </div>
+                <div class="pull-right col-md-2">
+                    <input class="btn btn-lg btn-success" type="submit" value="Post" role="button">
+                </div>
+            </div>
+            <!-- Example row of columns -->
         </div>
-        <script src="assets/js/app.js"></script>
+        </form>
+        <!-- /container -->
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

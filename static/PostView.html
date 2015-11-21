@@ -27,7 +27,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
                     </button>
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
@@ -41,8 +41,8 @@
                         <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'"> 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -50,33 +50,26 @@
             </div>
         </div>
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron" data-ng-controller="PersonsCtrl">
-            <div class="container" data-ng-repeat="person in persons">
+        <div class="jumbotron" data-ng-controller="PostCtrl">
+            <div class="container" data-ng-repeat="post in posts">
                 <div class="col-md-8" style="background-color: white">
-                    <h3><b>{{person.fullName}}'s Post: </b></h3> 
-                    <p>Adjunto fotos de como la pasé ayer en 100 a 1.</p> 
-                </div>
-                <div class="col-md-4 text-center"> 
-                    <div class="container pull-right" onclick="location.href='UserProfile.html'">
-                        <h2 style="display: block;">{{person.fullName}}</h2>
-                        <img src="https://upload.wikimedia.org/wikipedia/en/3/3f/Majin-Boo.jpg" style="display: block; width: 100%;" class="pull-left" width="350">
-                        <small class="text-left" style="word-wrap: break-word">{{person.email}}</small>
-                    </div>
+                    <h3><b>{{post.username}}'s Post: </b></h3>
+                    <p>{{post.text}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="container" style="background-color:lightgreen;">
-                    <h4>Attached Files </h4> 
+                    <h4>Attached Files </h4>
                     <h5>Right Click -> Save As... to download</h5>
                     <div class="col-md-offset-1">
-                        <div class="row" data-ng-controller="FilesCtrl">
-                            <p data-ng-repeat="f in files"><a href="{{f.link}}" download>{{f.link}}</p>
-                        </div>                                                  
+                        <div class="row" data-ng-controller="PostCtrl">
+                            <p data-ng-repeat="post in posts"><a href="{{post.document}}" download>View Attachment</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>     
+    </div>
     <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->

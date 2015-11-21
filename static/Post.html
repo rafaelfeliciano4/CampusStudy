@@ -28,28 +28,29 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
                     </button>
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'"> 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
+        <form action="/MainPost" method="POST" enctype=multipart/form-data>
         <p style="display: block;"><br></p>
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="container" "">
@@ -60,36 +61,29 @@
         <p style="display: block;"><br></p>
         <div class="container">
             <div class="row">
-                <div class="form-group has-success"> 
-                    <label class="control-label" for="formInput20">Subject</label>
-                    <input type="text" class="form-control" placeholder="Enter Subject">
+                <div class="form-group has-success">
+                    <label class="control-label" for="inputSubject">Subject</label>
+                    <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="Enter Subject">
                 </div>
             </div>
             <div class="row">
-                <div class="form-group has-success text-primary"> 
-                    <label class="control-label" for="formInput59">Comment</label>                     
-                    <textarea class="form-control" rows="10" placeholder="Enter Comment(s) *Optional"></textarea>
+                <div class="form-group has-success text-primary">
+                    <label class="control-label" for="inputText">Comment</label>
+                    <textarea class="form-control" rows="10" id="inputText" name="inputText" placeholder="Enter Comment(s) *Optional"></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="control-label" for="formInput112">Select all files to attach to the post</label>
-                    <h6>(Shift+Left Click to select more than one)</h6>
-                    <form action="profile_picture_form.asp">
-                        <input type="file" name="pic" id="PostFiles" multiple>
-                        <script>
-                                function buttonClick() {
-                                    var files = document.getElementById("PostFiles").value
-                                    alert(files);
-                                }
-                                </script>
+                    <label class="control-label" for="file">Select all files to attach to the post</label>
+                    <p><input type="file" id="file"name="file"></p>
                 </div>
                 <div class="pull-right col-md-2">
-                    <button type="button" onclick="location.href='PostView.html'" lass="btn btn-success btn-lg pull-right">Post</button>                     
+                    <input class="btn btn-lg btn-success" type="submit" value="Post" role="button">
                 </div>
             </div>
             <!-- Example row of columns -->
-        </div>         
+        </div>
+        </form>
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

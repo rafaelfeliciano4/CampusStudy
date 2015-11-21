@@ -34,8 +34,8 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/UserGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/UserEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="jumbotron">
-            <form action="/CreateEvent" method="POST">
+            <form action="/CreateEvent" method="POST" enctype=multipart/form-data>
             <div class="container">
                 <div class="row" style="height:100%; background-color:">
                     <div class="pull-left text-left col-md-offset-0 col-md-push-0 col-md-pull-0 col-md-4">
@@ -57,8 +57,9 @@
                                 <label class="control-label" for="inputName">Event Name:</label>
                                 <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Placeholder text">
                             </div>
-                            <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://img06.deviantart.net/638b/i/2005/198/6/6/dbz__homecoming_by_risachantag.jpg">
-                            <a class="btn btn-lg btn-success" href="#" onclick="location.href='Profile.html'" role="button">Upload event photo</a>
+                            <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://i.imgur.com/FzaFFbX.png">
+                            <label class="control-label" for="file">Upload Event Picture</label>
+                            <p><input type="file" id="file"name="file"></p>
                         </div>
                         <br>
                     </div>

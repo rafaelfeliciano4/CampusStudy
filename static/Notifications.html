@@ -26,7 +26,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
                     </button>
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
@@ -40,8 +40,8 @@
                         <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'"> 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -54,35 +54,35 @@
                 <h1 class="text-center">Notifications</h1>
             </div>
         </div>
-        <div class="container" data-ng-controller="NotificationsCtrl" style="overflow-y: scroll">
-            <table class="table"> 
-                <thead> 
-                    <tr> 
-                        <th>#</th>                         
-                        <th>From:</th>                         
-                        <th width="250em">Group/Event:</th>                         
-                        <th>Preview:</th>                         
-                    </tr>                     
+        <div class="container" style="overflow-y: scroll">
+            <table class="table"  style="height:100px; style="overflow-y: scroll">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Message:</th>
+                        <th width="250em">From:</th>
+                        <th>Preview:</th>
+                    </tr>
                 </thead>
-                <tbody data-ng-repeat="notification in notifications"> 
-                    <tr> 
-                        <td>{{$index+1}}</td>                         
-                        <td>
-                            <a href="#" onclick="location.href='UserProfile.html'">{{notification.fullName}}</a>
+                <tbody data-ng-controller="NotificationsCtrl">
+                    <tr data-ng-repeat="notification in notifications">
+                        <td>{{$index+1}}</td>
+                        <td >
+                        {{notification.message}} <a href="/{{notification.type}}/{{notification.ID}}"> {{notification.name}} </a>
                         </td>
                         <td width="250em">
-                            <a href="#" onclick="location.href='GroupLayout.html'">
-                                <img src="{{notification.imgurl}}" width="50em" height="40em">                                                                                                                                {{notification.groupName}}
+                            <a href="/{{notification.type}}/{{notification.ID}}" >
+                                <img src="{{notification.picture}}" width="50em" height="40em">                                                                                                                                {{notification.groupName}}
                             </a>
-                        </td>                         
+                        </td>
                         <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">{{notification.preview}}</a>
-                        </td>                         
-                    </tr>                     
+                            <a href="/Post/{{notification.postID}}" >{{notification.subject}}</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <!-- Example row of columns -->
-        </div>         
+        </div>
         <script src="assets/js/app.js"></script>
-    </body>     
+    </body>
 </html>

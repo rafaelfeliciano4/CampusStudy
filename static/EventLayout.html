@@ -28,60 +28,61 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
                     </button>
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'"> 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
-        <div class="container">
+        <div class="container" data-ng-controller="EventsInfoCtrl">
             <div class="pull-left col-md-3">
-                <div class="row" data-ng-controller="EventDescriptionCtrl">
-                    <h2 data-ng-repeat="eD in eventDesc">{{eD.name}}</h2>
+                <div class="row" data-ng-repeat="event in events">
+                    <h2>{{event.name}}</h2>
                     <div class="row">
-                        <img src="http://farm3.static.flickr.com/2153/2096942585_dc8a50b015.jpg" width="200" class="pull-left">
+                        <img src="{{event.picture}}" width="200" class="pull-left">
                     </div>
-                    <div class="row" data-ng-controller="EventDescriptionCtrl">
-                        <p data-ng-repeat="eD in eventDesc">Date: {{eD.date}}</p>
-                        <p data-ng-repeat="eD in eventDesc">{{eD.bio}}</p>
+                    <div class="row">
+                        <p>Date: {{event.date}}</p>
+                        <p>Time: {{event.time}}</p>
+                        <p>{{event.purpose}}</p>
                     </div>
                 </div>
                 <h2>Participants</h2>
-                <div class="row" data-ng-controller="EventMembersCtrl">
-                    <p data-ng-repeat="mem in eventMem"><a href="#" onclick="location.href='UserProfile.html'">{{mem.firstName}} {{mem.lastName}}</a></p>
+                <div class="row" data-ng-controller="AttendingEventCtrl">
+                    <p data-ng-repeat="a in attending"><a href="/User/{{a.ID}}">{{a.name}}</a></p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h2><a class="btn-success btn pull-right" href="#" onclick="location.href='Post.html'" role="button">Post</a>Feed</h2>
-                <div class="row" data-ng-controller="EventFeedCtrl">
-                    <p data-ng-repeat="feed in eventFeed"><a href="#">{{feed.body}}</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">{{feed.firstName}} {{feed.lastName}}</a> <b>Faculty:</b> {{feed.faculty}}</p>
-                </div>                 
+            <div class="col-md-6" data-ng-controller="EventFeedsCtrl">
+                <h2><a class="btn-success btn pull-right" href="/PostInEvent" role="button">Post</a>Feed</h2>
+                <div class="row" data-ng-repeat="feed in feeds">
+                    <p><a href="#">{{feed.subject}}</a> <b>Post by:</b> <a href="/User/{{feed.userID}}">{{feed.name}}</a> <b>Date: {{feed.date}}</b></p>
+                </div>
             </div>
-            <div class="col-md-3 pull-right">
-                <h2 class="text-center pull-left">Event Admin</h2>
-                <img src="http://images.myfavoritegames.com/gallery-db-z-gt-x/Buu/Fat_Buu/majinbuu005.jpg" width="200" class="img-rounded pull-left" />
-                <h1 style="display: block;" class="pull-left">Majin Buu</h1>
-                <a class="btn-success btn pull-left" href="#" onclick="location.href='UserProfile.html'" role="button">View profile »</a>
+            <div class="col-md-3 pull-right" data-ng-controller="EventAdminCtrl">
+                <h2 class="text-center pull-left" data-ng-repeat="event2 in eventAdmin">Event Admin</h2>
+                <img src="{{event2.profilePic}}" width="200" class="img-rounded pull-left" data-ng-repeat="event2 in eventAdmin">
+                <h1 style="display: block;" class="pull-left" data-ng-repeat="event2 in eventAdmin">{{event2.name}}</h1>
+                <a class="btn-success btn pull-left" data-ng-repeat="event2 in eventAdmin" href="/User/{{event2.ID}}" role="button">View profile »</a>
             </div>
             <!-- Example row of columns -->
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

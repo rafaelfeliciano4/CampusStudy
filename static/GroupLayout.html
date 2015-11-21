@@ -28,79 +28,82 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
                     </button>
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'"> 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        <a href="#" onclick="location.href='Notifications.html'">
+                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
                 <!--/.navbar-collapse -->
             </div>
         </div>
-        <div class="container">
+        <div class="container" data-ng-controller="GroupsInfoCtrl">
             <div class="pull-left col-md-3">
-                <div class="row" data-ng-controller="GroupDescriptionCtrl">
-                    <h2 data-ng-repeat="gD in groupDesc">{{gD.name}}</h2>
-                    <div class="row">
-                        <img src="https://namekusei.files.wordpress.com/2011/02/family-kamehameha-01.jpg" width="250" class="pull-left img-rounded">
+                <div class="row" >
+                    <h2 data-ng-repeat="group in groups">{{group.name}}</h2>
+                    <div class="row" data-ng-repeat="group in groups">
+                        <img src="{{group.picture}}" width="250" class="pull-left img-rounded">
                     </div>
-                    <div class="row" data-ng-controller="GroupDescriptionCtrl">
+                    <div class="row">
                         <button type="button" class="btn btn-info">Join Group +</button>
                         <button type="button" class="btn btn-warning">Leave Group -</button>
-                        <p data-ng-repeat="gD in groupDesc">{{gD.bio}}</p>
+                        <p>{{group.purpose}}</p>
                     </div>
                 </div>
                 <h2>Members</h2>
                 <div class="row" data-ng-controller="GroupMembersCtrl">
-                    <p data-ng-repeat="member in members"><a href="#" onclick="location.href='UserProfile.html'">{{member.firstName}} {{member.lastName}}</a></p>
+                    <p data-ng-repeat="member in gMembers"><a href="/User/{{member.ID}}">{{member.name}}</a></p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h2><a class="btn-success btn pull-right" href="#" onclick="location.href='Post.html'" role="button">Post</a>Feed</h2>
-                <div class="row" data-ng-controller="GroupFeedCtrl">
-                    <p data-ng-repeat="feed in groupFeed"><a href="#">{{feed.body}}</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">{{feed.firstName}} {{feed.lastName}}</a> <b>Faculty:</b> {{feed.faculty}}</p>
-                </div>                 
+            <div class="col-md-6" data-ng-controller="GroupFeedsCtrl">
+                <h2><a class="btn-success btn pull-right" href="/PostInGroup" role="button">Post</a>Feed</h2>
+                <div class="row" data-ng-repeat="feed in feeds">
+                    <p><a href="#">{{feed.subject}}</a> <b>Post by:</b> <a href="/User/{{feed.userID}}">{{feed.name}}</a> <b>Date: {{feed.date}}</b></p>
+                </div>
             </div>
-            <div class="col-md-3 pull-right">
-                <div class="row">
+            <div class="col-md-3 pull-right" data-ng-controller="GroupTutorCtrl">
+                <div class="row" data-ng-repeat="t in tutor">
                     <h2 class="pull-left text-center">Group Admin</h2>
-                    <img src="http://images.myfavoritegames.com/gallery-db-z-gt-x/Buu/Fat_Buu/majinbuu005.jpg" width="250" class="img-rounded pull-left" />
+                    <img src="{{t.profilePic}}" width="250" class="img-rounded pull-left" />
                 </div>
                 <div class="row pg-empty-placeholder">
-                    <div class="text-center">
-                        <h1 style="display: block;" class="">Majin Buu</h1>
-                        <a class="btn-success btn" href="#" onclick="location.href='UserProfile.html'" role="button">View profile »</a>                          
+                    <div class="text-center" data-ng-repeat="t in tutor">
+                        <h1 style="display: block;" class="">{{t.name}}</h1>
+                        <a class="btn-success btn" href="/User/{{t.ID}}" role="button">View profile »</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="pull-right">
                         <h2 class="text-center">Group Events</h2>
-                        <div class="row" style="height:375px; overflow-y: scroll;" data-ng-controller="GroupEventsCtrl">
-                            <div data-ng-repeat="event in groupEvents">
-                                <h3 class="text-center">{{event.name}}</h3>
-                                <p align="center"><b>Location: </b>{{event.location}} <b>Date: </b>{{event.date}} <b>Time: </b>{{event.time}}</p>
-                                <p class="text-center"><a class="btn btn-primary" href="#" onclick="location.href='EventLayout.html'" role="button">View details »</a></p>
+                        <div class="row" style="height:375px; overflow-y: scroll;" data-ng-controller="GroupEventsInfoCtrl">
+                            <div data-ng-repeat="eg in gEvents">
+                                <h3 class="text-center">{{eg.name}}</h3>
+                                <p align="center"><b>Location: </b>{{eg.location}} <b>Date: </b>{{eg.date}} <b>Time: </b>{{eg.time}}</p>
+                                <p class="text-center"><a class="btn btn-primary" href="/Event/{{eg.ID}}" role="button">View details »</a></p>
                             </div>
-                        </div>                         
+                        </div>
+                        <div>
+                             <p class="text-center"><a class="btn btn-default" href="/CreateGroupEvent" role="button">Create Event</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Example row of columns -->
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->
