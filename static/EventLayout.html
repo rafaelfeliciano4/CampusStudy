@@ -37,13 +37,13 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -58,6 +58,13 @@
                         <img src="{{event.picture}}" width="200" class="pull-left">
                     </div>
                     <div class="row">
+                        <br>
+                        <br>
+                        <a type="button" class="btn btn-info" ng-href="/JoinE" role="button">Attend Event +</a>
+                        <a type="button" class="btn btn-warning" ng-href="/LeaveE" role="button">Leave Event -</a>
+                    </div>
+                    <div class="row">
+                        <p>Location: {{event.location}}</p>
                         <p>Date: {{event.date}}</p>
                         <p>Time: {{event.time}}</p>
                         <p>{{event.purpose}}</p>
@@ -70,16 +77,52 @@
             </div>
             <div class="col-md-6" data-ng-controller="EventFeedsCtrl">
                 <h2><a class="btn-success btn pull-right" href="/PostInEvent" role="button">Post</a>Feed</h2>
-                <div class="row" data-ng-repeat="feed in feeds">
-                    <p><a href="#">{{feed.subject}}</a> <b>Post by:</b> <a href="/User/{{feed.userID}}">{{feed.name}}</a> <b>Date: {{feed.date}}</b></p>
-                </div>
+                 <table class="table" style="height:100px; style=" verflow-y: scroll"">
+                            <thead>
+                                <tr>
+                                    <th>Subject:</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>By:</th>
+                                    <th>Name:</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr data-ng-repeat="feed in feeds">
+                                    <td width="250em">
+                                        <a href="/Post/{{feed.ID}}"> {{feed.subject}} </a>
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+
+
+                                    <td width="250em">
+                                        <a href="/User/{{feed.userID}}">
+                                            <img src="{{feed.profilePic}}" width="50em" height="40em">                                                                    {{notification.groupName}}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/User/{{feed.userID}}"> {{feed.name}} </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
             </div>
             <div class="col-md-3 pull-right" data-ng-controller="EventAdminCtrl">
-                <h2 class="text-center pull-left" data-ng-repeat="event2 in eventAdmin">Event Admin</h2>
-                <img src="{{event2.profilePic}}" width="200" class="img-rounded pull-left" data-ng-repeat="event2 in eventAdmin">
-                <h1 style="display: block;" class="pull-left" data-ng-repeat="event2 in eventAdmin">{{event2.name}}</h1>
+                <div class="row">
+                    <div>
+                        <h2 class="text-center" data-ng-repeat="event2 in eventAdmin">Event Admin</h2>
+                <p><img src="{{event2.profilePic}}" width="250" class="img-rounded pull-left" data-ng-repeat="event2 in eventAdmin"></p>
+                    </div>
+                </div>
+                <h1 style="display: block;"  data-ng-repeat="event2 in eventAdmin">{{event2.name}}</h1>
+                <div class="row">
                 <a class="btn-success btn pull-left" data-ng-repeat="event2 in eventAdmin" href="/User/{{event2.ID}}" role="button">View profile »</a>
+                </div>
             </div>
+
             <!-- Example row of columns -->
         </div>
         <!-- Main jumbotron for a primary marketing message or call to action -->

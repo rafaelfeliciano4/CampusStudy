@@ -20,13 +20,20 @@ PROFILE_PIC = "SELECT profilePic FROM User WHERE ID='{0}'"
 USER_NAME_PIC="SELECT name, profilePic FROM User WHERE ID='{0}'"
 USER_NOTIFICATIONS="SELECT * FROM Notifications where ID in (SELECT notificationID From HasNotification WHERE userID='{0}')"
 POST_INFO = "SELECT p.ID as ID, p.userID as userID, p.text as text, p.document as document, p.subject as subject, p.date as date, p.time as time, u.name as username FROM Post as p, User as u WHERE p.ID = '{0}' AND p.userID = u.ID"
-INSERT_ATTENDING = "INSERT INTO Attending VALUES('{0}','{1}')"
+INSERT_ATTENDING = "INSERT INTO Attending VALUES ('{0}','{1}')"
 INSERT_BELONGS = "INSERT INTO Belongs VALUES('{0}','{1}')"
 INSERT_CODE = "INSERT INTO ConfirmationCode VALUES('{0}','{1}')"
 GROUP_EVENT = "SELECT * FROM Meeting WHERE ID in (SELECT meetingID FROM GroupMeeting WHERE groupID = '{0}')"
 INSERT_GROUP_MEETING = "INSERT INTO GroupMeeting VALUES('{0}','{1}')"
 EMPTY_SET = "SELECT 1 FROM Dual WHERE false"
-
+GET_EMAIL="SELECT email FROM User"
+GET_PASS="SELECT password FROM User WHERE email='{0}'"
+GET_ATTENDING="SELECT userID FROM Attending"
+GET_BELONGS="SELECT userID FROM Belongs"
+GET_CONFIRMED="SELECT confirmed FROM User WHERE email='{0}'"
+CONFIRM_USR="UPDATE User SET confirmed = 1  WHERE email='{0}' "
+DELETE_CONFIRM="DELETE FROM ConfirmationCode WHERE email='{0}'"
+GET_CODE="SELECT code FROM ConfirmationCode WHERE email='{0}'"
 #Post in group Queries
 POST_ID = "SELECT CASE WHEN (SELECT MAX(ID) FROM Post) IS NULL THEN 1 ELSE (SELECT MAX(ID) FROM Post)+1 END"
 POST = "INSERT INTO Post VALUES('{0}','{1}','{2}','{3}','{4}',CURDATE(),CURTIME())"
@@ -37,24 +44,19 @@ CREATES = "INSERT INTO Creates VALUES ('{0}','{1}')"
 HAS_NOTIFICATION = "INSERT INTO HasNotification VALUES('{0}','{1}')"
 EVENT_ID = "SELECT CASE WHEN (SELECT MAX(ID) FROM Meeting) IS NULL THEN 1 ELSE (SELECT MAX(ID) FROM Meeting)+1 END"
 GROUP_ID = "SELECT CASE WHEN (SELECT MAX(ID) FROM Groups) IS NULL THEN 1 ELSE (SELECT MAX(ID) FROM Groups)+1 END"
-
+LEAVE_GROUP="DELETE FROM Belongs WHERE userID='{0}' and groupID='{1}'"
+LEAVE_EVENT="DELETE FROM Attending WHERE userID='{0}' and meetingID='{1}'"
+RESET_PASS = "UPDATE User SET password='{0}' WHERE email='{1}'"
 #Post in event Queries
-#POST_ID = "SELECT CASE WHEN (SELECT MAX(ID) FROM Post) IS NULL THEN 0 ELSE (SELECT MAX(ID) FROM Post) END"
-#POST = "INSERT INTO Post VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')"
 MEETING_POST = "INSERT INTO MeetingPost VALUES('{0}','{1}')"
-#NOTIFICATION_ID = "SELECT CASE WHEN (SELECT MAX(ID) FROM Notifications) IS NULL THEN 0 ELSE (SELECT MAX(ID) FROM Notifications) END"
-#NOTIFICATION = "INSERT INTO Notifications VALUES('{0}','{1}','{2}')"
-#CREATES = "INSERT INTO Creates VALUES ('{0}','{1}')"
 
 #View Notifications
 VIEW_NOTIFICATIONS = "SELECT message FROM Notifications WHERE ID IN (SELECT notificationID FROM HasNotification WHERE userID = '{0}')"
 
 #Group Feeds
-GROUP_FEEDS = "SELECT p.ID,p.userID,p.text,p.subject,p.date,u.name From Post as p, User as u WHERE p.ID in (SELECT postID from GroupPost,Groups WHERE groupID='{0}') and p.userID = u.ID"
-
+GROUP_FEEDS = "SELECT p.ID,p.userID,p.text,p.subject,p.date,u.name,u.profilePic From Post as p, User as u WHERE p.ID in (SELECT postID from GroupPost,Groups WHERE groupID='{0}') and p.userID = u.ID"
 #Event Feeds
-EVENT_FEEDS = "SELECT p.ID,p.userID,p.text,p.subject,p.date,u.name From Post as p, User as u WHERE p.ID in (SELECT postID from MeetingPost,Groups WHERE meetingID='{0}') and p.userID = u.ID"
-
+EVENT_FEEDS = "SELECT p.ID,p.userID,p.text,p.subject,p.date,u.name,u.profilePic From Post as p, User as u WHERE p.ID in (SELECT postID from MeetingPost,Meeting WHERE meetingID='{0}') and p.userID = u.ID"
 #Post for colleagues
 COLLEAGUES_POST = "INSERT INTO ColleaguesPost VALUES('{0}','{1}')"
 

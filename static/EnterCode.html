@@ -45,25 +45,41 @@
             <!-- START THE FEATURETTES -->
             <div class="row featurette">
                 <div class="col-md-5 col-md-offset-4">
-                    <form role="form">
+                    <form role="form" action="/ResetPass" method="POST" >
                         <div class="form-group">
                             <label class="control-label" for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="exampleInputEmail1">Reset Code</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter reset code">
+                            <input type="text" class="form-control" name="inputCode" id="inputCode" placeholder="Enter reset code">
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="exampleInputEmail1">New Password</label>
-                            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter new password">
+                            <input type="password" class="form-control" name="inputNpass" id="inputNpass" placeholder="Enter new password">
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="exampleInputEmail1">Confirm New Password</label>
-                            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Confirm new password">
+                            <input type="password" class="form-control"name="inputCpass" id="inputCpass" placeholder="Confirm new password">
                         </div>
+                        <input type="submit" value="Change Password" role="button">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" onclick="location.href='index.html'">Change Password</button>
+
+                    <script type="text/javascript">
+                        window.onload = function () {
+                        	document.getElementById("inputNpass").onchange = validatePassword;
+                        	document.getElementById("inputCpass").onchange = validatePassword;
+                        }
+                        function validatePassword(){
+                        var pass2=document.getElementById("inputCpass").value;
+                        var pass1=document.getElementById("inputNpass").value;
+                        if(pass1!=pass2)
+                        	document.getElementById("inputCpass").setCustomValidity("Passwords Don't Match");
+                        else
+                        	document.getElementById("inputCpass").setCustomValidity('');
+                        //empty string means no validation error
+                        }
+                        </script>
                 </div>
             </div>
             <!-- /END THE FEATURETTES -->

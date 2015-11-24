@@ -37,13 +37,13 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -51,15 +51,15 @@
             </div>
         </div>
         <div class="container" data-ng-controller="GroupsInfoCtrl">
-            <div class="pull-left col-md-3">
+            <div class="pull-left col-md-3" data-ng-repeat="group in groups">
                 <div class="row" >
-                    <h2 data-ng-repeat="group in groups">{{group.name}}</h2>
+                    <h2 >{{group.name}}</h2>
                     <div class="row" data-ng-repeat="group in groups">
                         <img src="{{group.picture}}" width="250" class="pull-left img-rounded">
                     </div>
                     <div class="row">
-                        <button type="button" class="btn btn-info">Join Group +</button>
-                        <button type="button" class="btn btn-warning">Leave Group -</button>
+                        <a type="button" class="btn btn-info" href="/JoinG" role="button">Join Group +</a>
+                        <a type="button" class="btn btn-warning" href="/LeaveG" role="button">Leave Group -</a>
                         <p>{{group.purpose}}</p>
                     </div>
                 </div>
@@ -70,9 +70,38 @@
             </div>
             <div class="col-md-6" data-ng-controller="GroupFeedsCtrl">
                 <h2><a class="btn-success btn pull-right" href="/PostInGroup" role="button">Post</a>Feed</h2>
-                <div class="row" data-ng-repeat="feed in feeds">
-                    <p><a href="#">{{feed.subject}}</a> <b>Post by:</b> <a href="/User/{{feed.userID}}">{{feed.name}}</a> <b>Date: {{feed.date}}</b></p>
-                </div>
+                        <table class="table" style="height:100px; style=" verflow-y: scroll"">
+                            <thead>
+                                <tr>
+                                    <th>Subject:</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>By:</th>
+                                    <th>Name:</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr data-ng-repeat="feed in feeds">
+                                    <td width="250em">
+                                        <a href="/Post/{{feed.ID}}"> {{feed.subject}} </a>
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+
+
+                                    <td width="250em">
+                                        <a href="/User/{{feed.userID}}">
+                                            <img src="{{feed.profilePic}}" width="50em" height="40em">                                                                    {{notification.groupName}}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/User/{{feed.userID}}"> {{feed.name}} </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
             </div>
             <div class="col-md-3 pull-right" data-ng-controller="GroupTutorCtrl">
                 <div class="row" data-ng-repeat="t in tutor">
@@ -88,7 +117,7 @@
                 <div class="row">
                     <div class="pull-right">
                         <h2 class="text-center">Group Events</h2>
-                        <div class="row" style="height:375px; overflow-y: scroll;" data-ng-controller="GroupEventsInfoCtrl">
+                        <div class="row" style="height:150px; overflow-y: scroll;" data-ng-controller="GroupEventsInfoCtrl">
                             <div data-ng-repeat="eg in gEvents">
                                 <h3 class="text-center">{{eg.name}}</h3>
                                 <p align="center"><b>Location: </b>{{eg.location}} <b>Date: </b>{{eg.date}} <b>Time: </b>{{eg.time}}</p>

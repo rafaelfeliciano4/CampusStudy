@@ -11,8 +11,9 @@ import re
 
 UPLOAD_FOLDER = '/home/CampusStudy/CampusStudy/uploads'
 PICTURE_ALLOWED_EXTENSIONS = set(['png','PNG', 'jpg','JPG', 'jpeg','JPEG', 'gif', 'GIF'])
+ALLOWED_EXTENSIONS = set(['png','PNG', 'jpg','JPG', 'jpeg','JPEG', 'gif', 'GIF','PDF','pdf','TXT','txt','doc','DOC','DOCX','docx','zip','ZIP','rar','RAR','xls','XLS','XLT','xlt','ppt','PPT'])
 app = Flask(__name__, static_url_path='')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://CampusStudy:12345@mysql.server/CampusStudy$campus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://CampusStudy:54321@mysql.server/CampusStudy$campus'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = flask_sqlalchemy.SQLAlchemy(app)
 db.engine.connect()
@@ -116,6 +117,9 @@ def showSignUp():
 def editProfile():
     return app.send_static_file('EditProfile.html')
 
+@app.route('/Confirm')
+def confirmAccount():
+    return app.send_static_file('ConfirmAccount.html')
 
 @app.route('/SignUp',methods=['POST'])
 def userSignUp():
@@ -129,10 +133,11 @@ def userSignUp():
     bio = request.form['inputBio']
     picture = None
 
+
     if request.method == 'POST':
         file = request.files['file']
 
-        if file and allowed_file(file.filename):
+        if file and allowed_picture(file.filename):
 
             filename2 = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
@@ -143,6 +148,19 @@ def userSignUp():
 
         else:
             return "Extension not allowed"
+
+    #Get existing users emails
+    emails = db.engine.execute(queries.GET_EMAIL)
+    emailID = []
+
+    for row in emails:
+        emailID.append(row[0])
+    #If email does not exist, create the account
+    for i in emailID:
+        if i!=email:
+            pass
+        else:
+            return "That email account already exist in our database. Please use a different email"
 
     s=string.lowercase+string.digits
     r = random.sample(s,10)
@@ -172,21 +190,75 @@ def userSignUp():
 def signIn():
     password = request.form['inputPassword']
     email = request.form['inputEmail']
+    #Get existing users emails
+    emails = db.engine.execute(queries.GET_EMAIL)
+    emailID = []
+    exist=None
+    for row in emails:
+        emailID.append(row[0])
+    #If email does not exist, exit
+    for i in emailID:
+        if i==email:
+            exist = True
+            break
+        else:
+            exist=False
+    if exist==False:
+        return "That email account does not exist in our database. Please use a different email"
+    else:
+        #checks if account has been activated
+        confirmation = db.engine.execute(queries.GET_CONFIRMED.format(email))
+        confirm = []
+        for row in confirmation:
+            confirm.append(row[0])
+    #If email is not confirmed redirect to confirmation
+        for i in confirm:
+            if str(i)==str(0):
+                return redirect("/Confirm")
+                break
+            else:
+                #checks if password match the one in DB
+                passw=[]
+                keyquer =  db.engine.execute(queries.GET_PASS.format(email))
+                for row in keyquer:
+                    passw.append(row[0])
+                for i in passw:
+                    if i!=password:
+                        return "Wrong password. Please try again"
+                    else:
+                        #logs user in
+                        query = queries.USER_ID.format(email,password)
+                        result = db.engine.execute(query)
 
-    query = queries.USER_ID.format(email,password)
-    result = db.engine.execute(query)
+                        for row in result:
+                            session['current_user'] = str(row[0])
 
-    for row in result:
-        session['current_user'] = str(row[0])
+                        session['create_group_event'] = False
+                        session['searchQuery'] = queries.EMPTY_SET
+                        session['logged_in'] = True
+                        return redirect("/Home")
 
-    session['create_group_event'] = False;
-    session['searchQuery'] = queries.EMPTY_SET
-    return app.send_static_file('MainLayout.html')
+@app.route('/confirmed',methods=['POST'])
+def confirmed():
+    email = request.form['cinputEmail']
+    codei = request.form['cinputCode']
+    confirmation = db.engine.execute(queries.GET_CODE.format(email))
+    code = []
+    for row in confirmation:
+        code.append(row[0])
+    for i in code:
+        if str(i)==codei:
+            db.engine.execute(queries.CONFIRM_USR.format(email))
+            db.engine.execute(queries.DELETE_CONFIRM.format(email))
+            return redirect("/")
+        else:
+            return "Wrong code. Try again."
 
 @app.route('/logout')
 def logout_page():
 
     session['current_user'] = None
+    session['logged_in'] = False
     return redirect("/")
 
 
@@ -194,9 +266,13 @@ def logout_page():
 def index():
     s=string.lowercase+string.digits
     r = random.sample(s,10)
-    msg = Message('Campus Study Team',sender='campusstudydb@gmail.com',recipients=[request.form['exampleInputEmail1']])
+    email = request.form['exampleInputEmail1']
+    msg = Message('Campus Study Team',sender='campusstudydb@gmail.com',recipients=[email])
     msg.body = "This email was sent from the Campus Study Webpage: your reset code is "+''.join(r)
     mail.send(msg)
+
+    codeQuery = queries.INSERT_CODE.format(email,''.join(r))
+    db.engine.execute(codeQuery)
     return app.send_static_file('index.html')
 
 
@@ -211,7 +287,7 @@ def createGroup():
     if request.method == 'POST':
         file = request.files['file']
 
-        if file and allowed_file(file.filename):
+        if file and allowed_picture(file.filename):
 
             filename2 = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
@@ -251,6 +327,35 @@ def createGroup():
 
     return redirect('/Groups')
 
+@app.route('/ResetPass', methods=['POST'])
+def resetPass():
+    password = request.form['inputNpass']
+    verPassword = request.form['inputCpass']
+    email = request.form['inputEmail']
+    codei = request.form['inputCode']
+
+    confirmation = db.engine.execute(queries.GET_CODE.format(email))
+    code = []
+    for row in confirmation:
+        code.append(row[0])
+
+    for i in code:
+        if str(i)==codei:
+
+            db.engine.execute(queries.CONFIRM_USR.format(email))
+            db.engine.execute(queries.DELETE_CONFIRM.format(email))
+            db.engine.execute(queries.RESET_PASS.format(password, email))
+
+            return redirect("/")
+        else:
+            return "Wrong code. Try again."
+
+
+
+
+
+
+
 @app.route('/CreateEvent',methods=['GET','POST'])
 def createEvent():
 
@@ -267,7 +372,7 @@ def createEvent():
     if request.method == 'POST':
         file = request.files['file']
 
-        if file and allowed_file(file.filename):
+        if file and allowed_picture(file.filename):
 
             filename2 = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
@@ -333,7 +438,7 @@ def createEvent():
 def updateUser():
 
     name = request.form['inputName']
-    #faculty = request.form['inputFaculty']
+    faculty = request.form['inputFaculty']
     major = request.form['inputMajor']
     currentPass = request.form['inputCurPassword']
     password = request.form['inputPassword']
@@ -345,7 +450,7 @@ def updateUser():
     if request.method == 'POST':
         file = request.files['file']
 
-        if file and allowed_file(file.filename):
+        if file and allowed_picture(file.filename):
 
             filename2 = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
@@ -366,11 +471,12 @@ def updateUser():
         if str(row[2]) != currentPass:
             return "Current Password is incorrect."
 
-    if password != verPassword:
-        return "Verify passwords fields."
-
-    query = queries.EDIT_PROFILE.format(email,name,major,"Engineering",password,bio,str(session['current_user']),picture, str(session['current_user']))
-    db.engine.execute(query)
+    if (password==verPassword) and (password==''):
+        query = queries.EDIT_PROFILE.format(email,name,major,faculty,currentPass,bio,str(session['current_user']),picture, str(session['current_user']))
+        db.engine.execute(query)
+    else:
+        query = queries.EDIT_PROFILE.format(email,name,major,faculty,password,bio,str(session['current_user']),picture, str(session['current_user']))
+        db.engine.execute(query)
 
     return redirect('/Profile')
 
@@ -508,11 +614,28 @@ def userGroups():
     for dat in users:
         jsonf = {}
         jsonf["ID"] = dat['ID']
-        #jsonf["tutorID"] = dat['tutorID']
+        jsonf["tutorID"] = dat['tutorID']
         jsonf["name"] = dat['name']
-        #jsonf["purpose"] = dat['purpose']
+        jsonf["purpose"] = dat['purpose']
         jsonf["faculty"] = dat['faculty']
-        #jsonf["picture"] = dat['picture']
+        jsonf["picture"] = dat['picture']
+        GroupsData["userGroups"].append(jsonf)
+    return jsonify(GroupsData)
+
+@app.route('/colleagueGroups',methods=['GET','POST'])
+def colleagueGroups():
+
+    query = queries.USER_GROUPS.format(str(session['colleagueID']))
+    users = db.engine.execute(query)
+    GroupsData = {"userGroups":[]}
+    for dat in users:
+        jsonf = {}
+        jsonf["ID"] = dat['ID']
+        jsonf["tutorID"] = dat['tutorID']
+        jsonf["name"] = dat['name']
+        jsonf["purpose"] = dat['purpose']
+        jsonf["faculty"] = dat['faculty']
+        jsonf["picture"] = dat['picture']
         GroupsData["userGroups"].append(jsonf)
     return jsonify(GroupsData)
 
@@ -623,9 +746,13 @@ def groupTutor():
         eventData["groupTutorInfo"].append(jsonf)
     return jsonify(eventData)
 
-def allowed_file(filename):
+def allowed_picture(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in PICTURE_ALLOWED_EXTENSIONS
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/GroupPost',methods=['GET','POST'])
 def groupPost():
@@ -844,6 +971,7 @@ def groupFeeds():
         jsonf["subject"] = dat['subject']
         jsonf["date"] = dat['date']
         jsonf["name"] = dat['name']
+        jsonf["profilePic"] = dat['profilePic']
         feedData["groupFeeds"].append(jsonf)
     return jsonify(feedData)
 
@@ -862,6 +990,8 @@ def eventFeeds():
         jsonf["subject"] = dat['subject']
         jsonf["date"] = dat['date']
         jsonf["name"] = dat['name']
+        jsonf["profilePic"] = dat['profilePic']
+
         feedData["eventFeeds"].append(jsonf)
     return jsonify(feedData)
 
@@ -937,7 +1067,66 @@ def unFollow():
     db.engine.execute(query)
 
     return redirect('/Profile')
+#*********************************************************************************************************************************************************************************
+@app.route('/JoinG',methods=['GET','POST'])
+def joing():
+    people = db.engine.execute(queries.USER_BELONGS.format(str(session['groupID'])))
+    userID=[]
+    for row in people:
+        userID.append(row[0])
 
+    #If user does not exist, join group
+    if str(session['current_user']) not in userID:
+        query = queries.INSERT_BELONGS.format(str(session['current_user']),str(session['groupID']))
+        db.engine.execute(query)
+
+    return redirect('/myGroups')
+
+@app.route('/LeaveG',methods=['GET','POST'])
+def leaveg():
+    people = db.engine.execute(queries.USER_BELONGS.format(str(session['groupID'])))
+    userID=[]
+    for row in people:
+        userID.append(str(row[0]))
+
+    #If user exist, leave group
+    if str(session['current_user']) in userID:
+        query = queries.LEAVE_GROUP.format(str(session['current_user']),str(session['groupID']))
+        db.engine.execute(query)
+
+    return redirect('/myGroups')
+
+
+@app.route('/JoinE',methods=['GET','POST'])
+def joine():
+    people = db.engine.execute(queries.USER_ATTENDING.format(str(session['eventID'])))
+    userID=[]
+    for row in people:
+        userID.append(str(row[0]))
+
+    #If user does not exist, join group
+    if str(session['current_user']) not in userID:
+        query = queries.INSERT_ATTENDING.format(str(session['current_user']),str(session['eventID']))
+        db.engine.execute(query)
+
+    return redirect('/myEvents')
+
+@app.route('/LeaveE',methods=['GET','POST'])
+def leavee():
+    people = db.engine.execute(queries.USER_ATTENDING.format(str(session['eventID'])))
+    userID=[]
+    for row in people:
+        userID.append(str(row[0]))
+
+    #If user exist, leave group
+    if str(session['current_user']) in userID:
+        query = queries.LEAVE_EVENT.format(str(session['current_user']),str(session['eventID']))
+        db.engine.execute(query)
+
+    return redirect('/myEvents')
+
+
+#*********************************************************************************************************************************************************************************
 @app.route('/SearchQuery',methods=['GET','POST'])
 def searchQuery():
     search = request.form['inputSearch']
@@ -950,13 +1139,24 @@ def searchQuery():
     if category != None:
         query += facultySearch(search) + " UNION "
 
+
     if user != None:
         query += userSearch(search) + " UNION "
+
 
     if event != None:
         query += eventSearch(search) + " UNION "
 
+
     if group != None:
+        query += groupSearch(search) + " UNION "
+
+
+
+    if category == None and user == None and event == None and group == None:
+        query += facultySearch(search) + " UNION "
+        query += userSearch(search) + " UNION "
+        query += eventSearch(search) + " UNION "
         query += groupSearch(search) + " UNION "
 
     if not query:
@@ -964,6 +1164,9 @@ def searchQuery():
 
     else:
         session['searchQuery'] = query[0:len(query)-6]
+
+    if not search.strip():
+       session['searchQuery'] = queries.EMPTY_SET
 
     return redirect('/Search')
 

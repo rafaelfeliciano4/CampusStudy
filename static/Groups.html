@@ -41,7 +41,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/Notification" >
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -58,14 +58,19 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th># Groups:</th>
+                        <th>#</th>
+                        <th>Groups</th>
+                        <th>Faculty</th>
+                        <th>Picutre</th>
                     </tr>
                 </thead>
                 <tbody data-ng-repeat="g in groups">
                     <tr>
-                        <td>{{$index+1}} {{g.name}} {{g.purpose}} {{g.faculty}}</td>
+                        <td>{{$index+1}}</td>
+                        <td><a href="/Group/{{g.ID}}">{{g.name}}</a></td>
+                        <td>{{g.faculty}}</td>
                         <td>
-                            <a href="#" onclick="location.href='GroupLayout.html'">
+                            <a href="/Group/{{g.ID}}">
                                 <img src="{{g.picture}}" width="50em" height="40em">                                                                                                                                                                                                                                                                                                                                                                                                                                                                {{notification.groupName}}
                             </a>
                         </td>

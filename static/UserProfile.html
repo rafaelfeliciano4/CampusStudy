@@ -36,13 +36,13 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -67,10 +67,6 @@
                                 <p class="form-control-static">{{profile.major}}</p>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Year:</label>
-                                <p class="form-control-static">7</p>
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label">Faculty:</label>
                                 <p class="form-control-static">{{profile.faculty}}</p>
                             </div>
@@ -85,11 +81,11 @@
                     </div>
                 </div>
                 <a class="btn-success btn pull-left" style="display: " href="/Follow" role="button">Follow Colleague</a>
-                <a class="btn btn-lg btn-danger" style="display: " href="/unFollow" role="button">Unfollow Colleague</a>
+                <a class="btn btn btn-danger" style="display: " href="/unFollow" role="button">Unfollow Colleague</a>
             </div>
             <br>
         </div>
-        <div class="container" style="background-color:lightgreen">
+        <div class="container" >
             <div class="row">
                 <div class="col-md-4 pull-left" style="width:50%; height:95%; " data-ng-controller="cColleaguesCtrl">
                     <h2 style="display: block;">Colleagues</h2>
@@ -103,13 +99,13 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4 pull-right" style="height:95%; width:50%; " data-ng-controller="GroupsCtrl">
+                <div class="col-md-4 pull-right" style="height:95%; width:50%; " data-ng-controller="ColGroupsCtrl">
                     <h2>Groups</h2>
                     <div style="overflow-y: scroll">
                         <table border="1" style="width:100%; background-color:white;">
-                            <tr data-ng-repeat="group in groups">
+                            <tr data-ng-repeat="group in cgroups">
                                 <td>
-                                    <a href="#" onclick="location.href='GroupLayout.html'">{{group.name}}</a>
+                                    <a href="/Group/{{group.ID}}">{{group.name}}</a>
                                 </td>
                             </tr>
                         </table>

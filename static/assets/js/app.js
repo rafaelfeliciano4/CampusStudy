@@ -181,4 +181,13 @@ App.controller('SearchCtrl', function($scope, $http) {
        });
 });
 
+App.controller('ColGroupsCtrl', function($scope, $http) {
+ $http.get('/colleagueGroups')
+       .success(function(data){
+          $scope.cgroups = data.userGroups;
+       }).error(function(data,status){
+           alert(data + "\n\n\n\n\n" + status);
+       });
+});
+
 

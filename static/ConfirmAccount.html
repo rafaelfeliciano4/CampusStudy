@@ -40,17 +40,16 @@
             </div>
         </div>
         <div class="container marketing">
-            <!-- Three columns of text below the carousel -->
-            <!-- /.row -->
-            <!-- START THE FEATURETTES -->
+
             <div class="row featurette">
                 <div class="col-md-5 col-md-offset-4">
-                    <form action="/Home" method="POST">
+                    <form  action = "/confirmed" method="POST" enctype=multipart/form-data>
                         <form role="form">
                             <div class="form-group">
                                 <label class="control-label" for="exampleInputCode">Confirmation Code</label>
-                                <input type="text" class="form-control" name="exampleInputCode" id="exampleInputCode" placeholder="Enter code">
-                                <input type="submit" onclick="location.href='MainLayout.html' value=" Confirm account" ole="button" class="pull-right">
+                                <input type="email" class="form-control"  name="cinputEmail" id="cinputEmail" placeholder="Enter Email" required>
+                                <input type="text" class="form-control"  name="cinputCode" id="cinputCode" placeholder="Enter Code" required>
+                                <input type="submit" value=" Confirm account" role="button" class="pull-right">
                             </div>
                         </form>
                     </form>

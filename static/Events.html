@@ -41,7 +41,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/Notification" >
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -58,12 +58,19 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th># Events:</th>
+                        <th>#</th>
+                        <th>Event</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Picture</th>
                     </tr>
                 </thead>
                 <tbody data-ng-repeat="e in events">
                     <tr>
-                        <td>{{$index+1}} {{e.name}} {{e.purpose}} {{e.location}}</td>
+                        <td>{{$index+1}}</td>
+                        <td><a href="/Event/{{e.ID}}">{{e.name}}</a></td>
+                        <td>{{e.location}}</td>
+                        <td>{{e.date}}</td>
                         <td>
                             <a href="/Event/{{e.ID}}">
                                 <img src="{{e.picture}}" width="50em" height="40em">                                                                                                                                                                                                                                                                                                                                                                                                                                                                {{notification.groupName}}

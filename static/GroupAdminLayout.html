@@ -28,22 +28,22 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
                     </button>
                     <img src="http://i.imgur.com/dMqJQI8.png" width="200" class="pull-left" height="55" />
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <a class="navbar-brand" href="#" onclick="location.href='MainLayout.html'"><font size="5">Home</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Search.html'"><font size="5">Search</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Profile.html'" style="display: block;"><font size="5">Profile</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Groups.html'" style="display: block;"><font size="5">Groups</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='Events.html'" style="display: block;"><font size="5">Events</font></a>
-                        <a class="navbar-brand" href="#" onclick="location.href='FrontPage.html'" style="display: block;"><font size="5">Log Out</font></a>
+                    <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
+                    <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
+                    <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'"> 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" /> 
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -71,8 +71,8 @@
                 <div class="col-md-12">
                     <div class="row" data-ng-controller="GroupFeedCtrl">
                         <p data-ng-repeat="feed in groupFeed"><a href="#">{{feed.body}}</a> <b>Post by:</b> <a href="#" onclick="location.href='UserProfile.html'">{{feed.firstName}} {{feed.lastName}}</a> <b>Faculty:</b> {{feed.faculty}}<button type="button" class="close" aria-hidden="true">&times;</button></p>
-                    </div>                     
-                </div>                 
+                    </div>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="col-md-12">
@@ -88,7 +88,7 @@
                             <div class="row pg-empty-placeholder text-center">
                                 <a class="btn-success btn" href="#" onclick="location.href='UserProfile.html'" role="button">Add To Group +</a>
                                 <a class="btn btn-danger" href="#" onclick="location.href='UserProfile.html'" role="button">Delete Group -</a>
-                            </div>                             
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -102,14 +102,14 @@
                                     <p align="center"><b>Location: </b>{{event.location}} <b>Date: </b>{{event.date}} <b>Time: </b>{{event.time}}</p>
                                     <p class="text-center"><a class="btn btn-primary" href="#" onclick="location.href='EventLayout.html'" role="button">View details »</a><a class="btn btn-warning" href="#" onclick="location.href='EventLayout.html'" role="button">Remove Event -</a></p>
                                 </div>
-                            </div>                             
+                            </div>
                         </div>
-                    </div>                     
+                    </div>
                 </div>
             </div>
             <!-- Example row of columns -->
         </div>
-        <!-- Main jumbotron for a primary marketing message or call to action -->         
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

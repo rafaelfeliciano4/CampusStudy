@@ -37,13 +37,13 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -74,7 +74,18 @@
                             <div class="form-group" >
                                 <label class="control-label" for="inputFaculty">Faculty:</label>
                                 <select name="inputFaculty" id="inputFaculty" class="form-control">
-                                    <option data-ng-repeat="faculty in faculties">{{faculty.faculty}}</option>
+
+                                    <option>Biology</option>
+                                    <option>Engineering</option>
+                                    <option>Math</option>
+                                    <option>Arts</option>
+                                    <option>History</option>
+                                    <option>Chemistry</option>
+                                    <option>Physics</option>
+                                    <option>Geology</option>
+                                    <option>Economy</option>
+                                    <option>Computer Science</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                             <div class="form-group" >
@@ -82,16 +93,16 @@
                                 <input type="text" class="form-control" name="inputEmail"id="inputEmail" placeholder="Enter a valid .edu email" data-ng-repeat="profile in profiles" value="{{profile.email}}">
                             </div>
                             <div class="form-group" >
-                                <label class="control-label" for="inputPassword">Change Password:</label>
-                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Enter New Password" data-ng-repeat="profile in profiles">
+                                <label class="control-label" for="inputPassword">Change Password: (Optional)</label>
+                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Enter New Password" >
                             </div>
                             <div class="form-group" >
-                                <label class="control-label" for="inputVerPassword">Verify New Password:</label>
-                                <input type="password" class="form-control" name="inputVerPassword" id="inputVerPassword" placeholder="Enter New Password Again" data-ng-repeat="profile in profiles">
+                                <label class="control-label" for="inputVerPassword">Verify New Password: (Optional)</label>
+                                <input type="password" class="form-control" name="inputVerPassword" id="inputVerPassword" placeholder="Enter New Password Again" >
                             </div>
                             <div class="form-group" >
                                 <label class="control-label" for="inputCurPassword">Enter Current Password:</label>
-                                <input type="password" class="form-control" name="inputCurPassword" id="inputCurPassword" placeholder="Enter Current Password" data-ng-repeat="profile in profiles" >
+                                <input type="password" class="form-control" name="inputCurPassword" id="inputCurPassword" placeholder="Enter Current Password" required>
                             </div>
                         </dl>
                     </div>
@@ -101,40 +112,49 @@
                             <textarea class="form-control" rows="10" name="inputBio" id="inputBio" placeholder="Enter Bio" data-ng-repeat="profile in profiles">{{profile.bio}}</textarea>
                         </div>
                          <input class="btn btn-lg btn-success" type="submit" value="Update" role="button">
+                         <script type="text/javascript">
+                        window.onload = function () {
+                        	document.getElementById("inputPassword").onchange = validatePassword;
+                        	document.getElementById("inputVerPassword").onchange = validatePassword;
+                        	document.getElementById("inputName").onchange = validateEntry;
+                        	document.getElementById("inputEmail").onchange = validateEntry;
+                        	document.getElementById("inputMajor").onchange = validateEntry;
+                        }
+                        function validatePassword(){
+                        var pass2=document.getElementById("inputVerPassword").value;
+                        var pass1=document.getElementById("inputPassword").value;
+                        if(pass1!=pass2)
+                        	document.getElementById("inputPassword").setCustomValidity("Passwords Don't Match");
+                        else
+                        	document.getElementById("inputPassword").setCustomValidity('');
+                        //empty string means no validation error
+                        }
+                        function validateEntry(){
+                        var name=document.getElementById("inputName").value;
+                        var email=document.getElementById("inputEmail").value;
+                        var major=document.getElementById("inputMajor").value;
+                        if(name.trim()==''){
+                            document.getElementById("inputName").setCustomValidity("Please enter your name");
+                        }
+                        else if(email.trim() == ''){
+                        document.getElementById("inputEmail").setCustomValidity("Please enter a valid @upr email");
+                        }
+                        else if(major.trim() == ''){
+                        document.getElementById("inputMajor").setCustomValidity("Please enter your major");
+                        }
+                        else{
+                            document.getElementById("inputName").setCustomValidity('');
+                            document.getElementById("inputEmail").setCustomValidity('');
+                            document.getElementById("inputMajor").setCustomValidity('');
+                        }
+                        }
+                        </script>
                     </div>
                 </div>
             </div>
             <br>
         </div>
-        <div class="container" style="background-color:lightgreen">
-            <div class="row">
-                <div class="col-md-4 pull-left" style="width:50%; height:95%; " data-ng-controller="ColleaguesCtrl">
-                    <h2 style="display: block;">Colleagues</h2>
-                    <div style="overflow-y: scroll">
-                        <table border="1" style="width:100%; background-color:white;">
-                            <tr data-ng-repeat="colleague in colleagues">
-                                <td>
-                                    <a href="/User/{colleague.ID}}">{{colleague.name}}</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-4 pull-right" style="height:95%; width:50%; " data-ng-controller="GroupsCtrl">
-                    <h2>Groups</h2>
-                    <div style="overflow-y: scroll">
-                        <table border="1" style="width:100%; background-color:white;">
-                            <tr data-ng-repeat="group in groups">
-                                <td>
-                                    <a href="#" onclick="location.href='GroupLayout.html'">{{group.name}}</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- Example row of columns -->
-        </div>
+
         </form>
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <!-- /container -->

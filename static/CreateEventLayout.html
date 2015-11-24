@@ -34,13 +34,13 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/UserGroups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/UserEvents" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
                         <div class="container">
                             <div class="form-group">
                                 <label class="control-label" for="inputName">Event Name:</label>
-                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Placeholder text">
+                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Enter Event name" required>
                             </div>
                             <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://i.imgur.com/FzaFFbX.png">
                             <label class="control-label" for="file">Upload Event Picture</label>
@@ -67,7 +67,7 @@
                         <dl style="display: block;">
                             <div class="form-group">
                                 <label class="control-label" for="inputLocation">Location:</label>
-                                <input type="text" class="form-control" name="inputLocation" id="inputLocation" placeholder="Placeholder text">
+                                <input type="text" class="form-control" name="inputLocation" id="inputLocation" placeholder="Enter Location" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="inputMonth">Date:</label>
@@ -120,48 +120,41 @@
                                 </select>
                                 <select name="inputYear" id="inputYear" class="form-control">
                                     <option value="2015">2015</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
+                                    <option value="2016">2</option>
+                                    <option value="2017">3</option>
+                                    <option value="2018">4</option>
+                                    <option value="2019">5</option>
+                                    <option value="2020">6</option>
+                                    <option value="2021">7</option>
+                                    <option value="2022">8</option>
+                                    <option value="2023">9</option>
+                                    <option value="2024">10</option>
+                                    <option value="2025">11</option>
+                                    <option value="2026">12</option>
+                                    <option value="2027">13</option>
+                                    <option value="2028">14</option>
+                                    <option value="2029">15</option>
+                                    <option value="2030">16</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="inputTime">Time:</label>
-                                <input type="text" class="form-control" name="inputTime" id="inputTime" placeholder="Placeholder text">
+                                <input type="text" class="form-control" name="inputTime" id="inputTime" placeholder="Enter time" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="inputFaculty">Faculty:</label>
                                 <select name="inputFaculty" id="inputFaculty" class="form-control">
+                                    <option>Biology</option>
+                                    <option>Engineering</option>
                                     <option>Math</option>
-                                    <option>ININ</option>
-                                    <option>ICOM</option>
+                                    <option>Arts</option>
+                                    <option>History</option>
+                                    <option>Chemistry</option>
+                                    <option>Physics</option>
+                                    <option>Geology</option>
+                                    <option>Economy</option>
+                                    <option>Computer Science</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                             <h3 style="display: block;" class="text-danger">**You will be made administrator of this event automatically.</h3>
@@ -173,6 +166,35 @@
                             <textarea class="form-control" name="inputPurpose" id="inputPurpose" rows="10"></textarea>
                         </div>
                         <input class="btn btn-lg btn-success" type="submit" value="Create Event" role="button">
+
+                        <script type="text/javascript">
+                        window.onload = function () {
+                        	document.getElementById("inputName").onchange = validateEntry;
+                        	document.getElementById("inputLocation").onchange = validateEntry;
+                        	document.getElementById("inputTime").onchange = validateEntry;
+                        }
+
+                        function validateEntry(){
+                        var name=document.getElementById("inputName").value;
+                        var location=document.getElementById("inputLocation").value;
+                        var time=document.getElementById("inputTime").value;
+                        if(name.trim()==''){
+                            document.getElementById("inputName").setCustomValidity("Please enter your name");
+                        }
+                        else if(location.trim().equals('')){
+                        document.getElementById("inputLocation").setCustomValidity("Please enter event location");
+                        }
+                        else if(time.trim().equals('')){
+                        document.getElementById("inputTime").setCustomValidity("Please enter event time");
+                        }
+                        else{
+                            document.getElementById("inputName").setCustomValidity('');
+                            document.getElementById("inputLocation").setCustomValidity('');
+                            document.getElementById("inputTime").setCustomValidity('');
+                        }
+                        }
+                        </script>
+
                     </div>
                 </div>
             </div>

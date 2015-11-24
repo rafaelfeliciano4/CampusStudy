@@ -34,13 +34,13 @@
                     <a class="navbar-brand" href="/Home"><font size="5">Home</font></a>
                     <a class="navbar-brand" href="/Search"><font size="5">Search</font></a>
                     <a class="navbar-brand" href="/Profile" style="display: block;"><font size="5">Profile</font></a>
-                    <a class="navbar-brand" href="/Groups" style="display: block;"><font size="5">Groups</font></a>
-                    <a class="navbar-brand" href="/Events" style="display: block;"><font size="5">Events</font></a>
+                    <a class="navbar-brand" href="/myGroups" style="display: block;"><font size="5">Groups</font></a>
+                    <a class="navbar-brand" href="/myEvents" style="display: block;"><font size="5">Events</font></a>
                     <a class="navbar-brand" href="/logout" style="display: block;"><font size="5">Log Out</font></a>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#" onclick="location.href='Notifications.html'">
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                        <a href="/Notification" >
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
                         </a>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
                         <div class="container">
                             <div class="form-group">
                                 <label class="control-label" for="inputName">Group Name:</label>
-                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Placeholder text">
+                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Entre Group name" required>
                             </div>
                             <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://i.imgur.com/FzaFFbX.png">
                             <p><input type="file" id="file"name="file"></p>
@@ -69,9 +69,17 @@
                             <div class="form-group">
                                 <label class="control-label" for="inputFaculty">Faculty:</label>
                                 <select id="inputFaculty" name="inputFaculty" class="form-control">
+                                    <option>Biology</option>
+                                    <option>Engineering</option>
                                     <option>Math</option>
-                                    <option>ININ</option>
-                                    <option>ICOM los duros</option>
+                                    <option>Arts</option>
+                                    <option>History</option>
+                                    <option>Chemistry</option>
+                                    <option>Physics</option>
+                                    <option>Geology</option>
+                                    <option>Economy</option>
+                                    <option>Computer Science</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                             <h3 class="text-danger">**You will be made administrator of this group automatically.</h3>
@@ -83,6 +91,24 @@
                             <textarea class="form-control" name="inputPurpose" id="inputPurpose" placeholder="Enter Bio" rows="10"></textarea>
                         </div>
                         <input class="btn btn-lg btn-success" type="submit" value="Create Group" role="button">
+
+                        <script type="text/javascript">
+                        window.onload = function () {
+                        	document.getElementById("inputName").onchange = validateEntry;
+                        }
+
+                        function validateEntry(){
+                        var name=document.getElementById("inputName").value;
+                        if(name.trim().equials('')){
+                            document.getElementById("inputName").setCustomValidity("Please enter your name");
+                        }
+                        }
+                        else{
+                            document.getElementById("inputName").setCustomValidity('');
+                        }
+                        }
+                        </script>
+
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
-                            <img src="http://i.imgur.com/UUzWT42.png" width="70em" height="60" class="" />
+                            <img src="http://i.imgur.com/snBnAKg.png" width="70em" height="60" class="" />
 
                     </ul>
                 </div>
@@ -49,7 +49,7 @@
                         <div class="container">
                             <div class="form-group">
                                 <label class="control-label" for="inputName">Profile Name:</label>
-                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Enter Full Name">
+                                <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Enter Full Name" required>
                             </div>
                             <img style="display: block; width: 100%;" class="pull-left" width="350" src="http://i.imgur.com/FzaFFbX.png">
                             <label class="control-label" for="file">Upload Profile Picture</label>
@@ -62,27 +62,37 @@
                         <dl style="display: block;">
                             <div class="form-group">
                                 <label class="control-label" for="inputMajor">Major:</label>
-                                <input type="text" class="form-control" name="inputMajor" id="inputMajor" placeholder="Enter Major">
+                                <input type="text" class="form-control" name="inputMajor" id="inputMajor" placeholder="Enter Major" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="inputFaculty">Faculty:</label>
                                 <select name="inputFaculty" id="inputFaculty" class="form-control">
-                                    <option>Engineering</option>
+
                                     <option>Biology</option>
+                                    <option>Engineering</option>
+                                    <option>Math</option>
                                     <option>Arts</option>
+                                    <option>History</option>
+                                    <option>Chemistry</option>
+                                    <option>Physics</option>
+                                    <option>Geology</option>
+                                    <option>Economy</option>
+                                    <option>Computer Science</option>
+                                    <option>Other</option>
+
                                 </select>
                             </div>
                              <div class="form-group">
                                 <label class="control-label" for="inputEmail">Email:</label>
-                                <input type="text" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter a valid .edu email">
+                                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Enter a valid .edu email" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="inputPassword">Password:</label>
-                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Enter Password">
+                                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Enter Password" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="inputVerPassword">Verify Password:</label>
-                                <input type="password" class="form-control" name="inputVerPassword" id="inputVerPassword" placeholder="Enter Password Again">
+                                <input type="password" class="form-control" name="inputVerPassword" id="inputVerPassword" placeholder="Enter Password Again" required>
                             </div>
                         </dl>
                     </div>
@@ -92,6 +102,45 @@
                             <textarea class="form-control" rows="10" name="inputBio" id="inputBio" placeholder="Enter Bio"></textarea>
                         </div>
                         <input class="btn btn-lg btn-success" type="submit" value="Create Profile" role="button">
+
+                        <script type="text/javascript">
+                        window.onload = function () {
+                        	document.getElementById("inputPassword").onchange = validatePassword;
+                        	document.getElementById("inputVerPassword").onchange = validatePassword;
+                        	document.getElementById("inputName").onchange = validateEntry;
+                        	document.getElementById("inputEmail").onchange = validateEntry;
+                        	document.getElementById("inputMajor").onchange = validateEntry;
+                        }
+                        function validatePassword(){
+                        var pass2=document.getElementById("inputVerPassword").value;
+                        var pass1=document.getElementById("inputPassword").value;
+
+                        if(pass1!=pass2)
+                        	document.getElementById("inputVerPassword").setCustomValidity("Passwords Don't Match");
+                        else
+                        	document.getElementById("inputVerPassword").setCustomValidity('');
+                        //empty string means no validation error
+                        }
+                        function validateEntry(){
+                        var name=document.getElementById("inputName").value;
+                        var email=document.getElementById("inputEmail").value;
+                        var major=document.getElementById("inputMajor").value;
+                        if(name.trim().equals('')){
+                            document.getElementById("inputName").setCustomValidity("Please enter your name");
+                        }
+                        else if(email.trim().equals('')){
+                        document.getElementById("inputEmail").setCustomValidity("Please enter a valid @upr email");
+                        }
+                        else if(major.trim().equals('')){
+                        document.getElementById("inputMajor").setCustomValidity("Please enter your major");
+                        }
+                        else{
+                            document.getElementById("inputName").setCustomValidity('');
+                            document.getElementById("inputEmail").setCustomValidity('');
+                            document.getElementById("inputMajor").setCustomValidity('');
+                        }
+                        }
+                        </script>
                     </div>
                 </div>
             </div>
