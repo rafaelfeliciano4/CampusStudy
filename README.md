@@ -97,6 +97,57 @@ We should keep in mind all the functionalities that each layout is supposed to h
 * For the next sprint, we will begin to integrate queries with our layouts.
 
 
+#### Sprint 4 Meetings report:
+-----------------------------------------------------------------------------------------------------------------------------
+What Worked Well?
+
+  The majority of the queries we prepared for the previous sprint worked perfectly during the integration and testing of the joining of the front end with the back end of our application.
+
+
+What Didn’t Worked Well?
+
+  We had many issues when testing our apps due to our browsers, sometimes some errors would load when the application was working correctly, and sometimes the wrong data would show up. We learned that this was because of the cookies stored by the browser. We had trouble integrating the back-end with the front-end due to column types in the database.
+
+What We Learned?
+
+1. mySQL, Flask and angular data flow in JSON format. 
+2. Use a browser that does not automatically save cookies, or refresh every layout to make sure the new changes are being loaded.
+3. Use sessions with flask to keep track of the user logged in.
+4. Send mail from the server side using flask.
+5. Controllers with AngularJS to load JSON data into layout.
+6. We should not keep the data saved in a JSON file.
+7. Executing queries with flask stored in a separate file.
+
+
+##### Next sprint planning:
+
+* Implement the remaining queries 
+* Test the functionality of all the queries together
+* Setup the error handling
+* Tune up the app’s layout
+
+
+#### Sprint 5 Meetings report:
+-----------------------------------------------------------------------------------------------------------------------------
+What Worked Well?
+
+  The integration of our queries with the web page worked pretty well with some minor modifications.
+
+
+What Didn’t Worked Well?
+
+  Locating where our queries did not work well together, mostly when we forgot to keep consistency with the columns when we joined more than one table. Keeping track of the changes made by our teammates and finding/fixing bugs on other parts that affected the part that we were working on.  
+
+What We Learned?
+
+  1. How to create queries dynamically with python.
+  2. Auto tests with flask.
+  3. Inserting javascript code into HTML. 
+
+##### Future planning:
+
+  * Modify the layouts to give the app a more professional look. 
+  * Make our codes more efficient.
 
 
 
