@@ -13,7 +13,7 @@ UPLOAD_FOLDER = '/home/CampusStudy/CampusStudy/uploads'
 PICTURE_ALLOWED_EXTENSIONS = set(['png','PNG', 'jpg','JPG', 'jpeg','JPEG', 'gif', 'GIF'])
 ALLOWED_EXTENSIONS = set(['png','PNG', 'jpg','JPG', 'jpeg','JPEG', 'gif', 'GIF','PDF','pdf','TXT','txt','doc','DOC','DOCX','docx','zip','ZIP','rar','RAR','xls','XLS','XLT','xlt','ppt','PPT'])
 app = Flask(__name__, static_url_path='')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://CampusStudy:54321@mysql.server/CampusStudy$campus'
+app.config['SQLALCHEMY_DATABASE_URI'] = 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = flask_sqlalchemy.SQLAlchemy(app)
 db.engine.connect()
